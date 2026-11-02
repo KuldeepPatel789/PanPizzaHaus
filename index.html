@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pan Pizza House</title>
-<meta name="description" content="Pfannenpizza – dick belegt, saftig, knusprig am Rand.">
+<meta name="description" content="Pfannenpizza – fluffig, dick belegt, knusprig am Rand.">
+<link rel="icon" href="images/logo-badge.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="#start">Pan Pizza House</a>
+  <a class="brand" href="#start"><img src="images/logo.svg" alt="Pan Pizza House"></a>
   <nav aria-label="Main">
     <a href="#start" data-i18n="nav_home"></a>
     <a href="#speisekarte" data-i18n="nav_menu"></a>
@@ -21,23 +22,28 @@
     <a href="#kontakt" data-i18n="nav_contact"></a>
   </nav>
   <div class="lang" role="group" aria-label="Language">
-    <button data-lang="de">DE</button><button data-lang="tr">TR</button><button data-lang="en">EN</button>
+    <button data-lang="de">DE</button><button data-lang="tr">TR</button><button data-lang="en">EN</button><button data-lang="ar">AR</button><button data-lang="ru">RU</button><button data-lang="pl">PL</button><button data-lang="uk">UA</button>
   </div>
 </header>
 
 <main>
   <section id="start" class="hero">
     <div class="hero-text">
-      <h1 data-i18n="hero_h"></h1>
+      <h1><span data-i18n="hero_h"></span><span class="soon-big" data-i18n="hero_soon"></span></h1>
       <p data-i18n="hero_p"></p>
       <div class="actions">
-        <button class="btn" aria-disabled="true" disabled><span data-i18n="order"></span><em data-i18n="soon"></em></button>
-        <button class="btn ghost" aria-disabled="true" disabled><span data-i18n="reserve"></span><em data-i18n="soon"></em></button>
-        <a class="btn alt" href="#speisekarte" data-i18n="see_menu"></a>
+        <button class="btn" disabled><span data-i18n="order"></span><em data-i18n="soon"></em></button>
+        <button class="btn" disabled><span data-i18n="reserve"></span><em data-i18n="soon"></em></button>
+        <a class="btn solid" href="#speisekarte" data-i18n="see_menu"></a>
       </div>
-      <p class="note" data-i18n="soon_note"></p>
     </div>
-    <div class="pan" aria-hidden="true"><div class="pizza"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <img class="hero-img" src="images/hero.svg" alt="Pan pizza served in the pan">
+  </section>
+
+  <section class="feat">
+    <article class="fcard"><h3 data-i18n="f1"></h3></article>
+    <article class="fcard"><h3 data-i18n="f2"></h3></article>
+    <article class="fcard"><h3 data-i18n="f3"></h3></article>
   </section>
 
   <section id="speisekarte" class="menu">
@@ -45,9 +51,23 @@
     <div class="chips" id="chips" role="group"></div>
     <div class="menu-grid">
       <nav id="cats" class="cats" aria-label="Categories"></nav>
-      <div class="table-wrap"><table id="menu-table"></table><p id="empty" class="empty" hidden data-i18n="empty"></p></div>
+      <div><div id="cards" class="cards"></div><p id="empty" class="empty" hidden data-i18n="empty"></p></div>
     </div>
-    <p class="note" data-i18n="sample_note"></p>
+  </section>
+
+  <section id="galerie" class="gal">
+    <h2 data-i18n="gal_h"></h2>
+    <div class="gallery">
+      <img src="images/photos/restaurant-1.jpg" onerror="this.onerror=null;this.src='images/restaurant-1.svg'" alt="Restaurant interior" loading="lazy">
+      <img src="images/photos/restaurant-2.jpg" onerror="this.onerror=null;this.src='images/restaurant-2.svg'" alt="Open kitchen with pans" loading="lazy">
+      <img src="images/photos/restaurant-3.jpg" onerror="this.onerror=null;this.src='images/restaurant-3.svg'" alt="Restaurant front" loading="lazy">
+    </div>
+  </section>
+
+  <section id="bewertungen" class="revs">
+    <h2 data-i18n="rev_h"></h2>
+    <p class="rating"><strong id="avg"></strong> <span class="stars">★★★★★</span> <span data-i18n="rev_sub"></span></p>
+    <div id="rev-list" class="rev-list"></div>
   </section>
 
   <section id="standorte" class="locs">
@@ -72,6 +92,6 @@
   <a href="impressum.html" data-i18n="imprint"></a>
   <a href="datenschutz.html" data-i18n="privacy"></a>
 </footer>
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>
