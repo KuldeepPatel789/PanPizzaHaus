@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pan Pizza House</title>
+<meta name="description" content="Pfannenpizza – dick belegt, saftig, knusprig am Rand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#start">Pan Pizza House</a>
+  <nav aria-label="Main">
+    <a href="#start" data-i18n="nav_home"></a>
+    <a href="#speisekarte" data-i18n="nav_menu"></a>
+    <a href="#standorte" data-i18n="nav_locations"></a>
+    <a href="#jobs" data-i18n="nav_jobs"></a>
+    <a href="#kontakt" data-i18n="nav_contact"></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Language">
+    <button data-lang="de">DE</button><button data-lang="tr">TR</button><button data-lang="en">EN</button>
+  </div>
+</header>
+
+<main>
+  <section id="start" class="hero">
+    <div class="hero-text">
+      <h1 data-i18n="hero_h"></h1>
+      <p data-i18n="hero_p"></p>
+      <div class="actions">
+        <button class="btn" aria-disabled="true" disabled><span data-i18n="order"></span><em data-i18n="soon"></em></button>
+        <button class="btn ghost" aria-disabled="true" disabled><span data-i18n="reserve"></span><em data-i18n="soon"></em></button>
+        <a class="btn alt" href="#speisekarte" data-i18n="see_menu"></a>
+      </div>
+      <p class="note" data-i18n="soon_note"></p>
+    </div>
+    <div class="pan" aria-hidden="true"><div class="pizza"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  </section>
+
+  <section id="speisekarte" class="menu">
+    <h2 data-i18n="menu_h"></h2>
+    <div class="chips" id="chips" role="group"></div>
+    <div class="menu-grid">
+      <nav id="cats" class="cats" aria-label="Categories"></nav>
+      <div class="table-wrap"><table id="menu-table"></table><p id="empty" class="empty" hidden data-i18n="empty"></p></div>
+    </div>
+    <p class="note" data-i18n="sample_note"></p>
+  </section>
+
+  <section id="standorte" class="locs">
+    <h2 data-i18n="loc_h"></h2>
+    <div id="loc-list" class="loc-list"></div>
+  </section>
+
+  <section id="jobs" class="plain">
+    <h2 data-i18n="jobs_h"></h2>
+    <p data-i18n="jobs_p"></p>
+  </section>
+
+  <section id="kontakt" class="plain">
+    <h2 data-i18n="contact_h"></h2>
+    <p data-i18n="contact_p"></p>
+    <p><a href="mailto:info@example.com">info@example.com</a></p>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="yr"></span> Pan Pizza House</span>
+  <a href="impressum.html" data-i18n="imprint"></a>
+  <a href="datenschutz.html" data-i18n="privacy"></a>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
