@@ -115,3 +115,26 @@ body.has-wish{padding-bottom:150px}
   .wish{inset:auto;inset-block:72px 0;inset-inline-end:0;width:320px;max-height:none;border-radius:16px 0 0 0}
   body.has-wish{padding-bottom:0;padding-inline-end:332px}
 }
+
+/* ---- v5: quotes + logo ---- */
+.brand img{height:56px;width:auto;max-width:none;flex-shrink:0}
+.qband{padding:72px 20px;text-align:center}
+.qt{margin:0 auto}
+.qt em{font-style:inherit}
+html[dir="rtl"] .qt{font-style:normal}
+.q1{background:linear-gradient(135deg,#c8102e,#8c0a20)}
+.q1 .qt{font-family:"Pacifico","Amiri",cursive;font-size:clamp(1.6rem,3.8vw,2.9rem);line-height:1.45;max-width:30ch}
+.q1 .qt em{color:#ffd76a;text-shadow:0 3px 0 #0005}
+.q2{background:#26040a}
+.q2 .qt{font-family:"Playfair Display","Amiri",serif;font-style:italic;font-weight:700;font-size:clamp(1.8rem,4.2vw,3.2rem);line-height:1.2;max-width:26ch}
+.q2 .qt em{background:linear-gradient(transparent 60%,#e5173a 60%);padding:0 .15em}
+.q3{background:var(--bg2)}
+.q3 .qt{font-family:"Caveat","Amiri",cursive;font-weight:700;font-size:clamp(2.1rem,5.2vw,3.8rem);line-height:1.1;max-width:24ch}
+.q3 .qt em{color:#ffd76a;text-decoration:underline wavy #e5173a;text-decoration-thickness:3px;text-underline-offset:.18em}
+.q4{background:#c8102e}
+.q4 .qt{font-family:"Oswald","Noto Sans Arabic",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:clamp(1.6rem,4vw,2.8rem);line-height:1.25;max-width:24ch}
+.q4 .qt em{background:#fff;color:#8c0a20;padding:0 .3em;border-radius:.2em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.q5{background:var(--bg)}
+.q5 .qt{font-family:"Lobster","Amiri",cursive;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.15;max-width:20ch}
+.q5 .qt::after{content:"\2726";display:block;margin-top:10px;font-size:1.4rem;color:#ff5a73}
+.q5 .qt em{color:#ff5a73;text-shadow:0 0 22px #e5173a99}

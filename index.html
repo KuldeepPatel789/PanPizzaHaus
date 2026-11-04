@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pan Pizza Hause</title>
 <meta name="description" content="Pfannenpizza – fluffig, dick belegt, knusprig am Rand.">
-<link rel="icon" href="images/logo-badge.svg" type="image/svg+xml">
+<link rel="icon" href="images/logo-badge.svg?v=5" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Noto+Sans+Arabic:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Caveat:wght@600;700&family=Oswald:wght@500;700&family=Lobster&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="#start"><img src="images/logo.svg" alt="Pan Pizza Hause"></a>
+  <a class="brand" href="#start"><img src="images/logo.svg?v=5" alt="Pan Pizza Hause"></a>
   <nav aria-label="Main">
     <a href="#start" data-i18n="nav_home"></a>
     <a href="#speisekarte" data-i18n="nav_menu"></a>
@@ -44,10 +44,7 @@
     <article class="fcard"><h3 data-i18n="f3"></h3></article>
   </section>
 
-  <section class="quote" aria-live="off">
-    <p id="quote-text"></p>
-    <small>Pan Pizza Hause</small>
-  </section>
+  <section class="qband q1"><p class="qt" data-quote="0"></p></section>
 
   <section id="speisekarte" class="menu">
     <h2 data-i18n="menu_h"></h2>
@@ -58,6 +55,8 @@
     </div>
   </section>
 
+  <section class="qband q2"><p class="qt" data-quote="1"></p></section>
+
   <section id="galerie" class="gal">
     <h2 data-i18n="gal_h"></h2>
     <div class="gallery">
@@ -67,16 +66,22 @@
     </div>
   </section>
 
+  <section class="qband q3"><p class="qt" data-quote="2"></p></section>
+
   <section id="bewertungen" class="revs">
     <h2 data-i18n="rev_h"></h2>
     <p class="rating"><strong id="avg"></strong> <span class="stars">★★★★★</span> <span data-i18n="rev_sub"></span></p>
     <div id="rev-list" class="rev-list"></div>
   </section>
 
+  <section class="qband q5"><p class="qt" data-quote="4"></p></section>
+
   <section id="standorte" class="locs">
     <h2 data-i18n="loc_h"></h2>
     <div id="loc-list" class="loc-list"></div>
   </section>
+
+  <section class="qband q4"><p class="qt" data-quote="3"></p></section>
 
   <section id="jobs" class="plain">
     <h2 data-i18n="jobs_h"></h2>
@@ -102,6 +107,6 @@
   <p class="wish-hint" data-i18n="wish_hint"></p>
   <button id="wish-clear" class="btn-small" data-i18n="clear"></button>
 </aside>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>

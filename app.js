@@ -32,7 +32,7 @@ const T = {
   rev_sub:["Google-Bewertungen (Beispiele)","Google yorumları (örnek)","Google reviews (samples)","تقييمات Google (أمثلة)","Отзывы Google (примеры)","Opinie Google (przykłady)","Відгуки Google (приклади)"],
   loc_h:["Standort","Şube","Location","الفرع","Адрес","Lokal","Адреса"],
   jobs_h:["Jobs","İş İlanları","Jobs","وظائف","Вакансии","Praca","Вакансії"],
-  jobs_p:["Du willst im Team mitarbeiten? Schreib uns kurz, wer du bist und was du kannst.","Ekibimize katılmak ister misin? Bize kendinden ve neler yapabildiğinden kısaca bahset.","Want to join the team? Tell us briefly who you are and what you can do.","هل تريد الانضمام إلى فريقنا؟ أخبرنا باختصار من أنت وماذا تجيد.","Хотите работать в нашей команде? Коротко расскажите о себе и о том, что умеете.","Chcesz dołączyć do zespołu? Napisz krótko, kim jesteś i co potrafisz.","Хочете працювати в нашій команді? Коротко розкажіть про себе та що ви вмієте."],
+  jobs_p:["Du liebst gutes Essen und gute Laune? Werde Teil unseres Teams – wir freuen uns auf deine Bewerbung!","Lezzeti ve güzel enerjiyi seviyor musun? Ekibimize katıl, başvurunu sabırsızlıkla bekliyoruz!","Love great food and good vibes? Join our team – we can’t wait to hear from you!","هل تحب الطعام اللذيذ والأجواء الإيجابية؟ انضم إلى فريقنا، يسعدنا أن نسمع منك!","Любите вкусную еду и хорошее настроение? Присоединяйтесь к нашей команде — мы будем рады вашему отклику!","Kochasz dobre jedzenie i dobrą atmosferę? Dołącz do naszego zespołu – czekamy na Twoje zgłoszenie!","Любите смачну їжу та гарний настрій? Приєднуйтеся до нашої команди — ми будемо раді вашому відгуку!"],
   contact_h:["Kontakt","İletişim","Contact","اتصل بنا","Контакты","Kontakt","Контакти"],
   contact_p:["Fragen, Lob oder Gruppenreservierung? Schreib uns eine Mail.","Sorun, övgün ya da grup rezervasyonun mu var? Bize e-posta yaz.","Questions, praise or a group booking? Send us an email.","أسئلة أو ملاحظات أو حجز لمجموعة؟ راسلنا عبر البريد الإلكتروني.","Вопросы, отзывы или бронь для компании? Напишите нам на почту.","Pytania, pochwały lub rezerwacja dla grupy? Napisz do nas e-mail.","Питання, відгуки чи бронювання для компанії? Напишіть нам на пошту."],
   imprint:["Impressum","Künye (Impressum)","Imprint","بيانات النشر (Impressum)","Impressum","Impressum","Impressum"],
@@ -164,11 +164,14 @@ const REVIEWS = [
 ];
 /* ===== end of editable part ===== */
 
-// Eigene Zitate (Reihenfolge der Sprachen wie oben: DE, TR, EN, AR, RU, PL, UA)
+// Eigene Zitate (je ein Zitat pro Platz auf der Seite). Sprachen: DE, TR, EN, AR, RU, PL, UA
+// Wörter in [[doppelten Klammern]] werden besonders hervorgehoben.
 const QUOTES = [
-  ["Der Rand knuspert, der Käse zieht Fäden, und plötzlich ist Montag gar nicht so schlimm.","Kenarlar çıtırdar, peynir uzar ve Pazartesi birden o kadar da kötü gelmez.","The edge crackles, the cheese stretches, and suddenly Monday isn't so bad.","الحواف مقرمشة والجبن يتمدد، وفجأة لا يبدو يوم الاثنين سيئًا إلى هذا الحد.","Хрустит корочка, тянется сыр — и понедельник вдруг уже не так страшен.","Brzeg chrupie, ser się ciągnie i nagle poniedziałek wcale nie jest taki zły.","Хрумтить скоринка, тягнеться сир — і понеділок раптом не такий страшний."],
-  ["Wer Pizza teilt, teilt auch das beste Stück vom Tag.","Pizzayı paylaşan, günün en güzel anını paylaşır.","Share a pizza, share the best part of the day.","من يتشارك البيتزا يتشارك أجمل لحظات اليوم.","Кто делится пиццей, делится лучшей частью дня.","Kto dzieli się pizzą, dzieli się najlepszą częścią dnia.","Хто ділиться піцою, ділиться найкращою частиною дня."],
-  ["Gutes braucht Zeit – und eine heiße Pfanne.","Güzel şeyler zaman ister, bir de sıcak bir tava.","Good things take time, and a hot pan.","الأشياء الجميلة تحتاج إلى وقت، ومقلاة ساخنة.","Хорошее требует времени и горячей сковороды.","Dobre rzeczy wymagają czasu i gorącej patelni.","Добре потребує часу та гарячої пательні."]
+  ["Der Rand knuspert, der Käse zieht Fäden, und plötzlich ist [[Montag]] gar nicht so schlimm.","Kenarlar çıtırdar, peynir uzar ve [[Pazartesi]] birden o kadar da kötü gelmez.","The edge crackles, the cheese stretches, and suddenly [[Monday]] isn’t so bad.","الحواف مقرمشة والجبن يتمدد، وفجأة لا يبدو [[يوم الاثنين]] سيئًا إلى هذا الحد.","Хрустит корочка, тянется сыр — и [[понедельник]] вдруг уже не так страшен.","Brzeg chrupie, ser się ciągnie i nagle [[poniedziałek]] wcale nie jest taki zły.","Хрумтить скоринка, тягнеться сир — і [[понеділок]] раптом не такий страшний."],
+  ["Gutes braucht Zeit – und eine [[heiße Pfanne]].","Güzel şeyler zaman ister, bir de [[sıcak bir tava]].","Good things take time, and a [[hot pan]].","الأشياء الجميلة تحتاج إلى وقت، و[[مقلاة ساخنة]].","Хорошее требует времени и [[горячей сковороды]].","Dobre rzeczy wymagają czasu i [[gorącej patelni]].","Добре потребує часу та [[гарячої пательні]]."],
+  ["Wer Pizza teilt, teilt auch [[das beste Stück vom Tag]].","Pizzayı paylaşan, [[günün en güzel anını]] paylaşır.","Share a pizza, share [[the best part of the day]].","من يتشارك البيتزا يتشارك [[أجمل لحظات اليوم]].","Кто делится пиццей, делится [[лучшей частью дня]].","Kto dzieli się pizzą, dzieli się [[najlepszą częścią dnia]].","Хто ділиться піцою, ділиться [[найкращою частиною дня]]."],
+  ["Gute Pizza beginnt mit [[guten Menschen]].","İyi pizza, [[iyi insanlarla]] başlar.","Great pizza starts with [[great people]].","البيتزا الرائعة تبدأ مع [[أشخاص رائعين]].","Отличная пицца начинается с [[отличных людей]].","Świetna pizza zaczyna się od [[świetnych ludzi]].","Чудова піца починається з [[чудових людей]]."],
+  ["Komm hungrig, geh [[glücklich]].","Aç gel, [[mutlu]] git.","Come hungry, leave [[happy]].","تعال جائعًا، وعُد [[سعيدًا]].","Приходите голодными, уходите [[счастливыми]].","Przyjdź głodny, wyjdź [[szczęśliwy]].","Приходьте голодними, йдіть [[щасливими]]."]
 ];
 
 let lang = "de", cat = "pizza", tag = "all";
@@ -269,10 +272,11 @@ $("#wish-clear").onclick = () => { wish = {}; saveWish(); renderWish(); };
 $("#wish-toggle").onclick = () => $("#wish").classList.toggle("collapsed");
 
 // ----- Zitat -----
-let qi = new Date().getDate() % QUOTES.length;
-function renderQuote() { $("#quote-text").textContent = QUOTES[qi][LANGS.indexOf(lang)]; }
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-  setInterval(() => { qi = (qi + 1) % QUOTES.length; renderQuote(); }, 9000);
+const fmt = s => s.replace(/\[\[(.+?)\]\]/g, "<em>$1</em>");
+function renderQuote() {
+  const L = LANGS.indexOf(lang);
+  document.querySelectorAll("[data-quote]").forEach(el => el.innerHTML = fmt(QUOTES[el.dataset.quote][L]));
+}
 
 // ----- Sprach-Dropdown: Deutsch, Englisch, dann die übrigen -----
 const NAMES = {de:"Deutsch", en:"English", tr:"Türkçe", ar:"العربية", ru:"Русский", pl:"Polski", uk:"Українська"};
