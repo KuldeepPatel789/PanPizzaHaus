@@ -43,7 +43,8 @@ const T = {
   clear:["Leeren","Temizle","Clear","مسح","Очистить","Wyczyść","Очистити"],
   remove:["Entfernen","Kaldır","Remove","إزالة","Удалить","Usuń","Видалити"],
   wish_hint:["Nur eine Merkliste. Online bestellen ist bald verfügbar.","Sadece bir hatırlatma listesi. Online sipariş çok yakında.","Just a reminder list. Online ordering is coming soon.","قائمة تذكير فقط. الطلب عبر الإنترنت قريبًا.","Это только список для памяти. Онлайн-заказ скоро появится.","To tylko lista pomocnicza. Zamawianie online wkrótce.","Це лише список для нагадування. Онлайн-замовлення незабаром."],
-  deliv:["Warten musst du nicht: Bis unser eigenes Bestellen startet, stillst du deinen Heißhunger bei Lieferando oder Uber Eats.","Beklemene gerek yok: Kendi sipariş sistemimiz açılana kadar Lieferando veya Uber Eats ile açlığını hemen gider.","No need to wait: until our own ordering launches, satisfy your cravings with Lieferando or Uber Eats.","لا داعي للانتظار: إلى أن يبدأ نظام الطلب الخاص بنا، أشبع شهيتك عبر Lieferando أو Uber Eats.","Ждать не нужно: пока запускается наш собственный заказ, утолите голод через Lieferando или Uber Eats.","Nie musisz czekać: zanim ruszą nasze zamówienia, zaspokój apetyt przez Lieferando lub Uber Eats.","Чекати не потрібно: поки запускається наше власне замовлення, вгамуйте голод через Lieferando або Uber Eats."]
+  deliv:["Hunger? Setz dich zu uns und genieß die Pfannenpizza dampfend heiß – oder lass sie dir bequem über Lieferando oder Uber Eats nach Hause bringen.","Acıktın mı? Gel, sıcak sıcak tava pizzanın tadını bizde çıkar – ya da Lieferando veya Uber Eats ile doğrudan kapına getirelim.","Hungry? Pull up a chair and enjoy your pan pizza piping hot – or have it brought to your door with Lieferando or Uber Eats.","جائع؟ تفضّل بزيارتنا واستمتع ببيتزا المقلاة ساخنة عندنا، أو اطلبها إلى باب بيتك عبر Lieferando أو Uber Eats.","Проголодались? Приходите к нам за горячей пиццей на сковороде — или закажите доставку через Lieferando или Uber Eats.","Głodny? Wpadnij do nas na gorącą pizzę z patelni – albo zamów dostawę przez Lieferando lub Uber Eats.","Зголодніли? Приходьте до нас по гарячу піцу на пательні — або замовте доставку через Lieferando чи Uber Eats."],
+  dinein:["Vor Ort genießen","Restoranda ye","Dine in","تناول الطعام لدينا","Поесть у нас","Zjedz u nas","Поїсти в нас"]
 };
 const CATS = {
   vorspeisen:["Vorspeisen","Başlangıçlar","Starters","المقبلات","Закуски","Przystawki","Закуски"],
@@ -148,9 +149,10 @@ const MENU = [
 ];
 
 // Lieferdienste: Link eintragen, sobald die Registrierung fertig ist. Ohne Link erscheint kein Button.
+// Vorerst die Startseiten. Später durch die Links zu euren eigenen Restaurant-Seiten ersetzen.
 const DELIVERY = [
-  {name:"Lieferando", url:""},
-  {name:"Uber Eats", url:""}
+  {name:"Lieferando", url:"https://www.lieferando.de/"},
+  {name:"Uber Eats", url:"https://www.ubereats.com/de"}
 ];
 
 // Nur ein Standort (Platzhalter)
@@ -210,7 +212,7 @@ function renderPage() {
   document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = tr(el.dataset.i18n));
   $("#lang-select").value = lang;
   $("#yr").textContent = new Date().getFullYear();
-  $("#deliv-links").innerHTML = DELIVERY.filter(d => d.url).map(d => `<a class="btn solid dl" href="${d.url}" target="_blank" rel="noopener">${d.name}</a>`).join("");
+  $("#deliv-links").innerHTML = `<a class="btn dl" href="#standorte">${tr("dinein")}</a>` + DELIVERY.filter(d => d.url).map(d => `<a class="btn solid dl" href="${d.url}" target="_blank" rel="noopener">${d.name}</a>`).join("");
 
   $("#cats").innerHTML = "";
   Object.keys(CATS).forEach(k => {
