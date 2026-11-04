@@ -165,3 +165,51 @@ html[dir="rtl"] .qt{font-style:normal}
   .qt.anim,.qt em,.q5 .qt::after,.caret{animation:none!important}
   .q2 .qt em{background-size:100% .4em}.q3 .qt em{background-size:100% 4px}.q4 .qt em{background-size:100% 100%;color:#8c0a20}
 }
+
+/* ---- v7: a different entrance for every quote ---- */
+.wd{display:inline-block;white-space:nowrap}
+.u{display:inline-block}
+@keyframes chIn{from{opacity:0}to{opacity:1}}
+.fx-type .u{opacity:0;animation:chIn .01s steps(1) forwards;animation-delay:calc(var(--i) * 38ms)}
+.fx-type .u{display:inline}
+@keyframes wave{0%{opacity:0;transform:translateY(.7em)}55%{opacity:1;transform:translateY(-.28em)}100%{opacity:1;transform:none}}
+.fx-wave .u{opacity:0;animation:wave .7s ease forwards;animation-delay:calc(var(--i) * 35ms)}
+@keyframes dropIn{from{opacity:0;transform:translateY(-1.3em) rotate(-10deg)}to{opacity:1;transform:none}}
+.fx-drop .u{opacity:0;animation:dropIn .6s cubic-bezier(.3,1.4,.5,1) forwards;animation-delay:calc(var(--i) * 30ms)}
+@keyframes wordFlip{from{opacity:0;transform:rotateX(-95deg)}to{opacity:1;transform:none}}
+.fx-flip{perspective:700px}
+.fx-flip .u{opacity:0;transform-origin:50% 100%;animation:wordFlip .65s ease forwards;animation-delay:calc(var(--i) * 140ms)}
+@keyframes zoomIn{from{opacity:0;transform:scale(.35)}to{opacity:1;transform:none}}
+.fx-zoom{animation:zoomIn .75s cubic-bezier(.2,1.25,.3,1) both}
+@keyframes wipe{from{clip-path:inset(-25% 100% -25% -5%)}to{clip-path:inset(-25% -5% -25% -5%)}}
+@keyframes wipeRtl{from{clip-path:inset(-25% -5% -25% 100%)}to{clip-path:inset(-25% -5% -25% -5%)}}
+.fx-write{animation:wipe 1.7s ease-out both}
+html[dir="rtl"] .fx-write{animation-name:wipeRtl}
+@keyframes slideL{from{opacity:0;transform:translateX(-90px)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(90px)}to{opacity:1;transform:none}}
+.fx-slideL{animation:slideL .8s cubic-bezier(.2,.8,.2,1) both}
+.fx-slideR{animation:slideR .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes bounceIn{0%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1.1)}72%{transform:scale(.94)}100%{transform:none}}
+.fx-bounce{animation:bounceIn .9s ease both}
+@keyframes blurIn{from{opacity:0;filter:blur(14px);letter-spacing:.25em}to{opacity:1;filter:blur(0);letter-spacing:normal}}
+.fx-blur{animation:blurIn 1s ease-out both}
+/* heat: shimmering air + glowing flame word */
+@keyframes hotIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes flame{0%{transform:translateY(0) scaleY(1);text-shadow:0 0 14px #ff7a1a,0 -4px 22px #ff3b1f}100%{transform:translateY(-3px) scaleY(1.07);text-shadow:0 0 24px #ffb02e,0 -9px 32px #ff5a1f}}
+.fx-hot{animation:hotIn 1s ease-out both;filter:url(#heat);color:#ffe3c4}
+.qt.fx-hot em{display:inline-block;color:transparent;background:linear-gradient(180deg,#fff3b0,#ffb02e 40%,#ff5a1f 72%,#e5173a);-webkit-background-clip:text;background-clip:text;padding:0 .08em;animation:flame .45s ease-in-out infinite alternate}
+/* correction effects */
+.qt em.fix,.qt em.erase{background:none;animation:none;padding:0;color:inherit;text-shadow:none;text-decoration:none}
+.qt em.fix s{position:relative;display:inline-block;text-decoration:none;opacity:.75}
+.qt em.fix s::after{content:"";position:absolute;left:-3%;top:54%;height:.11em;width:0;background:#ff3b5c;border-radius:3px;animation:strikeLine .45s 1.1s ease-out forwards}
+@keyframes strikeLine{to{width:106%}}
+.qt em.fix b{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;max-width:0;font-weight:inherit;color:#ffd76a;text-shadow:0 0 16px #e5173a99;animation:writeIn .9s steps(12) 1.9s forwards}
+@keyframes writeIn{to{max-width:calc(var(--n) * 1.2ch)}}
+.qt em.erase{color:#ffd76a;text-shadow:0 0 16px #e5173a99}
+.qt em.erase::after{content:"";display:inline-block;width:.08em;height:.9em;margin-inline-start:.06em;background:currentColor;vertical-align:-.1em;animation:blink 1s steps(2) infinite}
+.qt em.erase.done::after{display:none}
+@media(prefers-reduced-motion:reduce){
+  .qt[class*="fx-"],.qt[class*="fx-"] .u{animation:none!important;opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+  .qt em.fix s::after{animation:none;width:106%}
+  .qt em.fix b{animation:none;max-width:none}
+}

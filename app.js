@@ -208,6 +208,27 @@ const QUOTES4 = [
 ];
 const QSETS = QUOTES.map((q, i) => [q, QUOTES2[i], QUOTES3[i], QUOTES4[i]]);
 
+// Zitate mit Korrektur-Effekt: {{falsch|richtig}} = falsches Wort wird durchgestrichen, richtiges geschrieben;
+// ((falsch|richtig)) = falsches Wort wird getippt, gelöscht, dann das richtige getippt.
+QSETS[0][2] = ["Ein Biss, und der Tag bekommt {{Extra-Salz|Extra-Käse}}.","Bir ısırık, ve gün {{ekstra tuzlu|ekstra peynirli}} olur.","One bite, and the day gets {{extra salt|extra cheese}}.","قضمة واحدة، ويصبح يومك {{بملح إضافي|بجبن إضافي}}.","Один укус — и день становится {{с двойной солью|с двойным сыром}}.","Jeden kęs i dzień dostaje {{podwójną sól|podwójny ser}}.","Один укус — і день стає {{з подвійною сіллю|з подвійним сиром}}."];
+QSETS[1][2] = ["Aus einer einfachen Pfanne wird ((ein kleines Chaos|ein kleines Fest)).","Sade bir tava ((küçük bir karmaşaya|küçük bir şölene)) dönüşür.","A simple pan becomes ((a small mess|a small celebration)).","مقلاة بسيطة تتحول إلى ((فوضى صغيرة|احتفال صغير)).","Простая сковорода превращается в ((маленький беспорядок|маленький праздник)).","Zwykła patelnia zamienia się w ((mały bałagan|małe święto)).","Проста пательня стає ((маленьким безладом|маленьким святом))."];
+QSETS[2][2] = ["Geteilte Pizza ist {{halbe Freude|doppelte Freude}}.","Paylaşılan pizza {{yarım mutluluktur|çifte mutluluktur}}.","Shared pizza is {{half the joy|double the joy}}.","البيتزا المشتركة {{نصف فرحة|فرحة مضاعفة}}.","Пицца на двоих — {{половина радости|двойная радость}}.","Pizza na pół to {{pół radości|podwójna radość}}.","Піца на двох — {{половина радості|подвійна радість}}."];
+QSETS[3][2] = ["Ein Team, das lacht, backt ((verbrannte Pizza|die beste Pizza)).","Gülen bir ekip ((yanık pizza|en iyi pizzayı)) pişirir.","A team that laughs bakes ((burnt pizza|the best pizza)).","الفريق الذي يضحك يخبز ((بيتزا محروقة|أفضل بيتزا)).","Команда, которая смеётся, печёт ((пригоревшую пиццу|лучшую пиццу)).","Zespół, który się śmieje, piecze ((przypaloną pizzę|najlepszą pizzę)).","Команда, яка сміється, пече ((пригорілу піцу|найкращу піцу))."];
+QSETS[4][0] = ["Komm hungrig, geh {{traurig|glücklich}}.","Aç gel, {{üzgün|mutlu}} git.","Come hungry, leave {{sad|happy}}.","تعال جائعًا، وعُد {{حزينًا|سعيدًا}}.","Приходите голодными, уходите {{грустными|счастливыми}}.","Przyjdź głodny, wyjdź {{smutny|szczęśliwy}}.","Приходьте голодними, йдіть {{сумними|щасливими}}."];
+QSETS[4][3] = ["Frisch aus dem Ofen, direkt {{in den Magen|ins Herz}}.","Fırından çıkar, {{doğruca mideye|doğruca kalbe}} gider.","Fresh from the oven, straight to the {{stomach|heart}}.","طازجة من الفرن، {{مباشرة إلى المعدة|مباشرة إلى القلب}}.","Свежая из печи — {{прямо в желудок|прямо в сердце}}.","Prosto z pieca, {{prosto do żołądka|prosto do serca}}.","Свіжа з печі — {{просто в шлунок|просто в серце}}."];
+
+// Erscheinungsform je Zitat (4 pro Platz): rise = von unten hoch, type = tippen, flip = Wörter klappen auf,
+// hot = Hitze-Flimmern, zoom, wave = Buchstabenwelle, write = Handschrift-Wisch, slideL/slideR, drop = Buchstaben fallen,
+// bounce, blur, fix = Korrektur-Effekt (siehe oben)
+const QFX = [
+  ["rise","type","fix","flip"],
+  ["hot","zoom","fix","wave"],
+  ["write","slideL","fix","slideR"],
+  ["drop","type","fix","zoom"],
+  ["fix","bounce","blur","fix"]
+];
+
+
 // Slogans mit Schreibmaschinen-Effekt über den Buttons
 const TAGLINES = [
   ["Eine Pfanne. Endloser Appetit.","Tek tava. Bitmeyen iştah.","One Pan. Endless Cravings.","مقلاة واحدة. شهية لا تنتهي.","Одна сковорода. Бесконечный аппетит.","Jedna patelnia. Niekończący się apetyt.","Одна пательня. Нескінченний апетит."],
@@ -313,16 +334,93 @@ $("#wish-clear").onclick = () => { wish = {}; saveWish(); renderWish(); };
 $("#wish-toggle").onclick = () => $("#wish").classList.toggle("collapsed");
 
 // ----- Zitat -----
-const fmt = s => s.replace(/\[\[(.+?)\]\]/g, "<em>$1</em>");
+const fmt = s => s
+  .replace(/\{\{(.+?)\|(.+?)\}\}/g, (m, w, r) => `<em class="fix"><s style="--n:${[...w].length}">${w}</s> <b style="--n:${[...r].length}">${r}</b></em>`)
+  .replace(/\(\((.+?)\|(.+?)\)\)/g, (m, w, r) => `<em class="erase" data-a="${w}" data-b="${r}"><span class="slot"></span></em>`)
+  .replace(/\[\[(.+?)\]\]/g, "<em>$1</em>");
 const REDUCED = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-const qIdx = QSETS.map(() => 0);
+const qIdx = QSETS.map(() => 0), qTok = QSETS.map(() => 0);
+
+// Text in Wörter/Buchstaben zerlegen (für Tipp-, Wellen-, Fall- und Flip-Effekte). Arabisch immer wortweise.
+function splitUnits(root, byWord) {
+  let i = 0;
+  (function walk(node) {
+    [...node.childNodes].forEach(ch => {
+      if (ch.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        ch.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.append(part); return; }
+          const wd = document.createElement("span");
+          if (byWord) { wd.className = "u"; wd.style.setProperty("--i", i++); wd.textContent = part; }
+          else {
+            wd.className = "wd";
+            [...part].forEach(c => { const u = document.createElement("span"); u.className = "u"; u.style.setProperty("--i", i++); u.textContent = c; wd.append(u); });
+          }
+          frag.append(wd);
+        });
+        ch.replaceWith(frag);
+      } else if (ch.nodeType === 1 && !ch.matches("em.erase")) walk(ch);
+    });
+  })(root);
+}
+
+// Falsches Wort tippen, löschen, richtiges Wort tippen
+function runErase(el, n, token) {
+  el.querySelectorAll("em.erase").forEach(em => {
+    const a = [...em.dataset.a], b = [...em.dataset.b], slot = em.querySelector(".slot"), seq = [];
+    if (REDUCED) { slot.textContent = em.dataset.b; em.classList.add("done"); return; }
+    for (let i = 1; i <= a.length; i++) seq.push([a.slice(0, i).join(""), i === a.length ? 900 : 85]);
+    for (let i = a.length - 1; i >= 0; i--) seq.push([a.slice(0, i).join(""), i === 0 ? 250 : 45]);
+    for (let i = 1; i <= b.length; i++) seq.push([b.slice(0, i).join(""), 85]);
+    let k = 0;
+    const step = () => {
+      if (qTok[n] !== token) return;
+      if (k >= seq.length) { em.classList.add("done"); return; }
+      slot.textContent = seq[k][0];
+      const d = seq[k][1]; k++;
+      setTimeout(step, d);
+    };
+    setTimeout(step, 900);
+  });
+}
+
+function fxDuration(el, fx) {
+  const len = (el.textContent || "").length, er = el.querySelector("em.erase");
+  if (er) { const a = [...er.dataset.a].length, b = [...er.dataset.b].length; return 900 + a * 85 + 900 + a * 45 + 250 + b * 85; }
+  if (el.querySelector("em.fix")) return 2900;
+  return ({type: len * 38 + 300, wave: len * 35 + 700, drop: len * 30 + 600, write: 1800})[fx] || 1400;
+}
+
 function renderQuoteAt(n) {
   const el = document.querySelector(`[data-quote="${n}"]`), L = LANGS.indexOf(lang);
+  let fx = QFX[n][qIdx[n]];
+  const token = ++qTok[n];
+  el.className = "qt";
   el.innerHTML = fmt(QSETS[n][qIdx[n]][L]);
-  el.classList.remove("anim"); void el.offsetWidth; el.classList.add("anim");
+  if (fx === "fix") fx = "rise";
+  const ar = lang === "ar";
+  if (["type", "wave", "drop"].includes(fx)) splitUnits(el, ar);
+  else if (fx === "flip") splitUnits(el, true);
+  void el.offsetWidth;
+  el.className = `qt fx-${fx}` + (fx === "rise" ? " anim" : "");
+  runErase(el, n, token);
+  return fxDuration(el, fx);
 }
-const renderQuote = () => QSETS.forEach((_, n) => renderQuoteAt(n));
-if (!REDUCED) QSETS.forEach((q, n) => setInterval(() => { qIdx[n] = (qIdx[n] + 1) % q.length; renderQuoteAt(n); }, 4300 + n * 350));
+function scheduleQuote(n, extra) {
+  if (REDUCED) return;
+  const dur = renderQuoteAt(n);
+  qTok[n] += 0;
+  setTimeout(() => { qIdx[n] = (qIdx[n] + 1) % QSETS[n].length; scheduleQuote(n, 0); }, dur + 2200 + (extra || 0));
+}
+let quoteStarted = false;
+function renderQuote() {
+  QSETS.forEach((_, n) => renderQuoteAt(n));
+  if (!quoteStarted && !REDUCED) {
+    quoteStarted = true;
+    QSETS.forEach((_, n) => setTimeout(() => { qIdx[n] = (qIdx[n] + 1) % QSETS[n].length; scheduleQuote(n, 0); }, fxDuration(document.querySelector(`[data-quote="${n}"]`), QFX[n][qIdx[n]]) + 2200 + n * 350));
+  }
+}
 
 // ----- Slogan: tippt sich selbst, bleibt kurz stehen, beginnt von vorn -----
 let tagI = 0, tagTimer = null;
