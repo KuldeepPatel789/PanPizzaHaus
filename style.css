@@ -138,3 +138,30 @@ html[dir="rtl"] .qt{font-style:normal}
 .q5 .qt{font-family:"Lobster","Amiri",cursive;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.15;max-width:20ch}
 .q5 .qt::after{content:"\2726";display:block;margin-top:10px;font-size:1.4rem;color:#ff5a73}
 .q5 .qt em{color:#ff5a73;text-shadow:0 0 22px #e5173a99}
+
+/* ---- v6: inline logo, tagline, delivery note, animated quotes ---- */
+.logo{display:block;height:56px;width:auto;flex-shrink:0}
+.hero-text .tagline{margin:10px 0 0;max-width:none;min-height:1.5em;font-size:clamp(1.3rem,2.7vw,2.1rem);font-weight:800;color:#ffd76a}
+.caret{display:inline-block;width:3px;height:1em;margin-inline-start:3px;background:#ffd76a;vertical-align:-.12em;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-text .deliv-note{font-size:1rem;max-width:52ch;margin:4px 0 8px}
+#deliv-links{margin:0 0 6px}
+.btn.dl{min-width:0;padding:10px 22px;font-size:1rem}
+@keyframes qin{from{opacity:0;transform:translateY(22px) scale(.97);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.qt.anim{animation:qin .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes hue{0%,100%{color:#ffd76a}50%{color:#ff9bb0}}
+.q1 .qt em{animation:hue 3.2s ease-in-out infinite}
+@keyframes mark{to{background-size:100% .4em}}
+.q2 .qt em{background:linear-gradient(#e5173a,#e5173a) no-repeat 0 90%/0 .4em;padding:0 .12em;animation:mark 1s .6s ease forwards}
+@keyframes draw{to{background-size:100% 4px}}
+.q3 .qt em{text-decoration:none;color:#ffd76a;background:linear-gradient(#ff3b5c,#ff3b5c) no-repeat 0 100%/0 4px;animation:draw 1s .6s ease forwards}
+@keyframes tag{to{background-size:100% 100%;color:#8c0a20}}
+.q4 .qt em{background:linear-gradient(#fff,#fff) no-repeat 0 0/0 100%;color:#fff;animation:tag .8s .6s ease forwards}
+@keyframes glow{0%,100%{color:#ff5a73;text-shadow:0 0 12px #e5173a77}50%{color:#ffc2cc;text-shadow:0 0 30px #ff2f52}}
+.q5 .qt em{animation:glow 2.6s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.q5 .qt::after{width:1em;margin:10px auto 0;text-align:center;animation:spin 6s linear infinite}
+@media(prefers-reduced-motion:reduce){
+  .qt.anim,.qt em,.q5 .qt::after,.caret{animation:none!important}
+  .q2 .qt em{background-size:100% .4em}.q3 .qt em{background-size:100% 4px}.q4 .qt em{background-size:100% 100%;color:#8c0a20}
+}

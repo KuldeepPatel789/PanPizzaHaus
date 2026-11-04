@@ -42,7 +42,8 @@ const T = {
   total:["Summe","Toplam","Total","المجموع","Итого","Razem","Разом"],
   clear:["Leeren","Temizle","Clear","مسح","Очистить","Wyczyść","Очистити"],
   remove:["Entfernen","Kaldır","Remove","إزالة","Удалить","Usuń","Видалити"],
-  wish_hint:["Nur eine Merkliste. Online bestellen ist bald verfügbar.","Sadece bir hatırlatma listesi. Online sipariş çok yakında.","Just a reminder list. Online ordering is coming soon.","قائمة تذكير فقط. الطلب عبر الإنترنت قريبًا.","Это только список для памяти. Онлайн-заказ скоро появится.","To tylko lista pomocnicza. Zamawianie online wkrótce.","Це лише список для нагадування. Онлайн-замовлення незабаром."]
+  wish_hint:["Nur eine Merkliste. Online bestellen ist bald verfügbar.","Sadece bir hatırlatma listesi. Online sipariş çok yakında.","Just a reminder list. Online ordering is coming soon.","قائمة تذكير فقط. الطلب عبر الإنترنت قريبًا.","Это только список для памяти. Онлайн-заказ скоро появится.","To tylko lista pomocnicza. Zamawianie online wkrótce.","Це лише список для нагадування. Онлайн-замовлення незабаром."],
+  deliv:["Warten musst du nicht: Bis unser eigenes Bestellen startet, stillst du deinen Heißhunger bei Lieferando oder Uber Eats.","Beklemene gerek yok: Kendi sipariş sistemimiz açılana kadar Lieferando veya Uber Eats ile açlığını hemen gider.","No need to wait: until our own ordering launches, satisfy your cravings with Lieferando or Uber Eats.","لا داعي للانتظار: إلى أن يبدأ نظام الطلب الخاص بنا، أشبع شهيتك عبر Lieferando أو Uber Eats.","Ждать не нужно: пока запускается наш собственный заказ, утолите голод через Lieferando или Uber Eats.","Nie musisz czekać: zanim ruszą nasze zamówienia, zaspokój apetyt przez Lieferando lub Uber Eats.","Чекати не потрібно: поки запускається наше власне замовлення, вгамуйте голод через Lieferando або Uber Eats."]
 };
 const CATS = {
   vorspeisen:["Vorspeisen","Başlangıçlar","Starters","المقبلات","Закуски","Przystawki","Закуски"],
@@ -146,6 +147,12 @@ const MENU = [
   {c:"getraenke",n:"Limonade",g:"lemonade",t:[],p:[2.5,3.5,4.5],a:"",v:"0,25 / 0,4 / 0,5 l",i:["water","sugar","lemonjuice","co2"]}
 ];
 
+// Lieferdienste: Link eintragen, sobald die Registrierung fertig ist. Ohne Link erscheint kein Button.
+const DELIVERY = [
+  {name:"Lieferando", url:""},
+  {name:"Uber Eats", url:""}
+];
+
 // Nur ein Standort (Platzhalter)
 const LOCATIONS = [
   {name:"Pan Pizza Hause",street:"Musterstraße 1",city:"12345 Musterstadt",phone:"01234 567890",mail:"info@example.com"}
@@ -174,6 +181,22 @@ const QUOTES = [
   ["Komm hungrig, geh [[glücklich]].","Aç gel, [[mutlu]] git.","Come hungry, leave [[happy]].","تعال جائعًا، وعُد [[سعيدًا]].","Приходите голодными, уходите [[счастливыми]].","Przyjdź głodny, wyjdź [[szczęśliwy]].","Приходьте голодними, йдіть [[щасливими]]."]
 ];
 
+// Zweite Zitate je Platz (wechseln mit den ersten, am selben Ort)
+const QUOTES2 = [
+  ["Das Leben ist kurz. Iss zuerst den [[knusprigen Rand]].","Hayat kısa. Önce [[çıtır kenarı]] ye.","Life is short. Eat the [[crispy edge]] first.","الحياة قصيرة. ابدأ بتناول [[الحافة المقرمشة]] أولًا.","Жизнь коротка. Сначала съешьте [[хрустящий край]].","Życie jest krótkie. Najpierw zjedz [[chrupiący brzeg]].","Життя коротке. Спершу з’їжте [[хрустку скоринку]]."],
+  ["Jede Pfanne erzählt eine [[köstliche Geschichte]].","Her tava [[lezzetli bir hikâye]] anlatır.","Every pan tells a [[delicious story]].","كل مقلاة تحكي [[قصة لذيذة]].","Каждая сковорода рассказывает [[вкусную историю]].","Każda patelnia opowiada [[smaczną historię]].","Кожна пательня розповідає [[смачну історію]]."],
+  ["Gute Gesellschaft lässt jedes Stück [[besser schmecken]].","İyi arkadaşlık her dilimi [[daha lezzetli]] yapar.","Good company makes every slice [[taste better]].","الصحبة الطيبة تجعل كل شريحة [[أشهى]].","Хорошая компания делает каждый кусочек [[вкуснее]].","Dobre towarzystwo sprawia, że każdy kawałek [[smakuje lepiej]].","Гарна компанія робить кожен шматочок [[смачнішим]]."],
+  ["Mit [[Leidenschaft]] gekocht, mit einem Lächeln serviert.","[[Tutkuyla]] pişirilir, gülümsemeyle servis edilir.","Cooked with [[passion]], served with a smile.","تُطهى بـ[[شغف]] وتُقدَّم بابتسامة.","Готовим со [[страстью]], подаём с улыбкой.","Gotowane z [[pasją]], podawane z uśmiechem.","Готуємо з [[пристрастю]], подаємо з усмішкою."],
+  ["Dein Tisch [[wartet]] schon.","Masan seni [[bekliyor]].","Your table is [[waiting]].","طاولتك [[تنتظرك]].","Ваш столик уже [[ждёт]].","Twój stolik już [[czeka]].","Ваш столик уже [[чекає]]."]
+];
+const QSETS = QUOTES.map((q, i) => [q, QUOTES2[i]]);
+
+// Slogans mit Schreibmaschinen-Effekt über den Buttons
+const TAGLINES = [
+  ["Eine Pfanne. Endloser Appetit.","Tek tava. Bitmeyen iştah.","One Pan. Endless Cravings.","مقلاة واحدة. شهية لا تنتهي.","Одна сковорода. Бесконечный аппетит.","Jedna patelnia. Niekończący się apetyt.","Одна пательня. Нескінченний апетит."],
+  ["Innen fluffig. Außen knusprig.","İçi kabarık. Dışı çıtır.","Fluffy inside. Crispy outside.","هشة من الداخل. مقرمشة من الخارج.","Внутри воздушная. Снаружи хрустящая.","W środku puszysta. Na zewnątrz chrupiąca.","Всередині пухка. Зовні хрустка."]
+];
+
 let lang = "de", cat = "pizza", tag = "all";
 try { lang = localStorage.getItem("lang") || lang; } catch (e) {}
 if (!LANGS.includes(lang)) lang = "de";
@@ -187,6 +210,7 @@ function renderPage() {
   document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = tr(el.dataset.i18n));
   $("#lang-select").value = lang;
   $("#yr").textContent = new Date().getFullYear();
+  $("#deliv-links").innerHTML = DELIVERY.filter(d => d.url).map(d => `<a class="btn solid dl" href="${d.url}" target="_blank" rel="noopener">${d.name}</a>`).join("");
 
   $("#cats").innerHTML = "";
   Object.keys(CATS).forEach(k => {
@@ -232,7 +256,7 @@ function renderPage() {
   ).join("");
 }
 
-function render() { renderPage(); renderWish(); renderQuote(); }
+function render() { renderPage(); renderWish(); }
 
 // ----- Wunschliste (Merkzettel) -----
 let wish = {};
@@ -273,14 +297,34 @@ $("#wish-toggle").onclick = () => $("#wish").classList.toggle("collapsed");
 
 // ----- Zitat -----
 const fmt = s => s.replace(/\[\[(.+?)\]\]/g, "<em>$1</em>");
-function renderQuote() {
-  const L = LANGS.indexOf(lang);
-  document.querySelectorAll("[data-quote]").forEach(el => el.innerHTML = fmt(QUOTES[el.dataset.quote][L]));
+const REDUCED = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+const qIdx = QSETS.map(() => 0);
+function renderQuoteAt(n) {
+  const el = document.querySelector(`[data-quote="${n}"]`), L = LANGS.indexOf(lang);
+  el.innerHTML = fmt(QSETS[n][qIdx[n]][L]);
+  el.classList.remove("anim"); void el.offsetWidth; el.classList.add("anim");
+}
+const renderQuote = () => QSETS.forEach((_, n) => renderQuoteAt(n));
+if (!REDUCED) QSETS.forEach((q, n) => setInterval(() => { qIdx[n] = (qIdx[n] + 1) % q.length; renderQuoteAt(n); }, 7500 + n * 900));
+
+// ----- Slogan: tippt sich selbst, bleibt kurz stehen, beginnt von vorn -----
+let tagI = 0, tagTimer = null;
+function typeTagline() {
+  clearTimeout(tagTimer);
+  const text = TAGLINES[tagI][LANGS.indexOf(lang)], el = $("#tag-text");
+  el.parentElement.setAttribute("aria-label", text);
+  if (REDUCED) { el.textContent = text; return; }
+  let n = 0;
+  (function step() {
+    el.textContent = text.slice(0, n);
+    if (n < text.length) { n++; tagTimer = setTimeout(step, 75); }
+    else tagTimer = setTimeout(() => { tagI = (tagI + 1) % TAGLINES.length; typeTagline(); }, 2800);
+  })();
 }
 
 // ----- Sprach-Dropdown: Deutsch, Englisch, dann die übrigen -----
 const NAMES = {de:"Deutsch", en:"English", tr:"Türkçe", ar:"العربية", ru:"Русский", pl:"Polski", uk:"Українська"};
 const sel = $("#lang-select");
 ["de","en","tr","ar","ru","pl","uk"].forEach(c => sel.add(new Option(NAMES[c], c)));
-sel.onchange = () => { lang = sel.value; try { localStorage.setItem("lang", lang); } catch (e) {} render(); };
-render();
+sel.onchange = () => { lang = sel.value; try { localStorage.setItem("lang", lang); } catch (e) {} render(); renderQuote(); typeTagline(); };
+render(); renderQuote(); typeTagline();

@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pan Pizza Hause</title>
 <meta name="description" content="Pfannenpizza – fluffig, dick belegt, knusprig am Rand.">
-<link rel="icon" href="images/logo-badge.svg?v=5" type="image/svg+xml">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 124 124%22%3E%3Ccircle cx=%2262%22 cy=%2262%22 r=%2260%22 fill=%22%23c8102e%22/%3E%3Cg transform=%22translate(8 2) scale(.82)%22%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2242%22 fill=%22%231f1d1b%22 stroke=%22%23fff%22 stroke-width=%225%22/%3E%3Cline x1=%2284%22 y1=%2290%22 x2=%22114%22 y2=%22112%22 stroke=%22%23fff%22 stroke-width=%2212%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2233%22 fill=%22%23e0952f%22/%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2226%22 fill=%22%23f7d36b%22/%3E%3Cpath d=%22M52 58 L52 33 M52 58 L74 71 M52 58 L30 71%22 stroke=%22%23e0952f%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2244%22 cy=%2246%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2262%22 cy=%2252%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2252%22 cy=%2270%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2236%22 cy=%2262%22 r=%223%22 fill=%22%232f8f3f%22/%3E%3Ccircle cx=%2268%22 cy=%2268%22 r=%223%22 fill=%22%232f8f3f%22/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Noto+Sans+Arabic:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Caveat:wght@600;700&family=Oswald:wght@500;700&family=Lobster&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="#start"><img src="images/logo.svg?v=5" alt="Pan Pizza Hause"></a>
+  <a class="brand" href="#start" aria-label="Pan Pizza Hause"><svg class="logo" viewBox="0 0 450 124" width="203" height="56" aria-hidden="true"><circle cx="52" cy="58" r="42" fill="#1f1d1b" stroke="#fff" stroke-width="5"/><line x1="84" y1="90" x2="114" y2="112" stroke="#fff" stroke-width="12" stroke-linecap="round"/><circle cx="52" cy="58" r="33" fill="#e0952f"/><circle cx="52" cy="58" r="26" fill="#f7d36b"/><path d="M52 58 L52 33 M52 58 L74 71 M52 58 L30 71" stroke="#e0952f" stroke-width="2.5"/><circle cx="44" cy="46" r="5.5" fill="#b3202a"/><circle cx="62" cy="52" r="5.5" fill="#b3202a"/><circle cx="52" cy="70" r="5.5" fill="#b3202a"/><circle cx="36" cy="62" r="3" fill="#2f8f3f"/><circle cx="68" cy="68" r="3" fill="#2f8f3f"/><text x="140" y="68" font-family="Bricolage Grotesque,Arial Black,Arial,sans-serif" font-weight="800" font-size="46" textLength="290" lengthAdjust="spacingAndGlyphs" fill="#fff">PAN PIZZA</text><line x1="142" y1="94" x2="192" y2="94" stroke="#ffd76a" stroke-width="3" stroke-linecap="round"/><text x="202" y="103" font-family="Bricolage Grotesque,Arial,sans-serif" font-weight="800" font-size="27" textLength="130" lengthAdjust="spacing" fill="#ffd76a">HAUSE</text><line x1="344" y1="94" x2="430" y2="94" stroke="#ffd76a" stroke-width="3" stroke-linecap="round"/></svg></a>
   <nav aria-label="Main">
     <a href="#start" data-i18n="nav_home"></a>
     <a href="#speisekarte" data-i18n="nav_menu"></a>
@@ -29,11 +29,14 @@
     <div class="hero-text">
       <h1><span data-i18n="hero_h"></span><span class="soon-big" data-i18n="hero_soon"></span></h1>
       <p data-i18n="hero_p"></p>
+      <p class="tagline"><span id="tag-text" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span></p>
       <div class="actions">
         <button class="btn" disabled><span data-i18n="order"></span><em data-i18n="soon"></em></button>
         <button class="btn" disabled><span data-i18n="reserve"></span><em data-i18n="soon"></em></button>
         <a class="btn solid" href="#speisekarte" data-i18n="see_menu"></a>
       </div>
+      <p class="deliv-note" data-i18n="deliv"></p>
+      <div id="deliv-links" class="actions"></div>
     </div>
     <img class="hero-img" src="images/hero.svg" alt="Pan pizza served in the pan">
   </section>
@@ -107,6 +110,6 @@
   <p class="wish-hint" data-i18n="wish_hint"></p>
   <button id="wish-clear" class="btn-small" data-i18n="clear"></button>
 </aside>
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>
