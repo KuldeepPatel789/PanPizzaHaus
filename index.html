@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pan Pizza House</title>
+<title>Pan Pizza Hause</title>
 <meta name="description" content="Pfannenpizza – fluffig, dick belegt, knusprig am Rand.">
 <link rel="icon" href="images/logo-badge.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="#start"><img src="images/logo.svg" alt="Pan Pizza House"></a>
+  <a class="brand" href="#start"><img src="images/logo.svg" alt="Pan Pizza Hause"></a>
   <nav aria-label="Main">
     <a href="#start" data-i18n="nav_home"></a>
     <a href="#speisekarte" data-i18n="nav_menu"></a>
@@ -21,9 +21,7 @@
     <a href="#jobs" data-i18n="nav_jobs"></a>
     <a href="#kontakt" data-i18n="nav_contact"></a>
   </nav>
-  <div class="lang" role="group" aria-label="Language">
-    <button data-lang="de">DE</button><button data-lang="tr">TR</button><button data-lang="en">EN</button><button data-lang="ar">AR</button><button data-lang="ru">RU</button><button data-lang="pl">PL</button><button data-lang="uk">UA</button>
-  </div>
+  <select id="lang-select" class="lang-select" aria-label="Language"></select>
 </header>
 
 <main>
@@ -44,6 +42,11 @@
     <article class="fcard"><h3 data-i18n="f1"></h3></article>
     <article class="fcard"><h3 data-i18n="f2"></h3></article>
     <article class="fcard"><h3 data-i18n="f3"></h3></article>
+  </section>
+
+  <section class="quote" aria-live="off">
+    <p id="quote-text"></p>
+    <small>Pan Pizza Hause</small>
   </section>
 
   <section id="speisekarte" class="menu">
@@ -88,10 +91,17 @@
 </main>
 
 <footer>
-  <span>© <span id="yr"></span> Pan Pizza House</span>
+  <span>© <span id="yr"></span> Pan Pizza Hause</span>
   <a href="impressum.html" data-i18n="imprint"></a>
   <a href="datenschutz.html" data-i18n="privacy"></a>
 </footer>
-<script src="app.js?v=3"></script>
+<aside id="wish" class="wish" hidden aria-live="polite">
+  <div class="wish-head"><h3 data-i18n="wish_h"></h3><button id="wish-toggle" class="icon-btn" aria-label="Toggle">▾</button></div>
+  <ul id="wish-list"></ul>
+  <div class="wish-total"><span data-i18n="total"></span><strong id="wish-sum"></strong></div>
+  <p class="wish-hint" data-i18n="wish_hint"></p>
+  <button id="wish-clear" class="btn-small" data-i18n="clear"></button>
+</aside>
+<script src="app.js?v=4"></script>
 </body>
 </html>

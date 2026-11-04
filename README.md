@@ -1,4 +1,4 @@
-# Pan Pizza House – Website
+# Pan Pizza Hause – Website
 
 Statische Seite (HTML/CSS/JS), keine Build-Tools nötig. Sprachen: DE, TR, EN, AR (rechts-nach-links), RU, PL, UA.
 

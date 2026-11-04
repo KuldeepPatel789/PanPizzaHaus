@@ -36,7 +36,13 @@ const T = {
   contact_h:["Kontakt","İletişim","Contact","اتصل بنا","Контакты","Kontakt","Контакти"],
   contact_p:["Fragen, Lob oder Gruppenreservierung? Schreib uns eine Mail.","Sorun, övgün ya da grup rezervasyonun mu var? Bize e-posta yaz.","Questions, praise or a group booking? Send us an email.","أسئلة أو ملاحظات أو حجز لمجموعة؟ راسلنا عبر البريد الإلكتروني.","Вопросы, отзывы или бронь для компании? Напишите нам на почту.","Pytania, pochwały lub rezerwacja dla grupy? Napisz do nas e-mail.","Питання, відгуки чи бронювання для компанії? Напишіть нам на пошту."],
   imprint:["Impressum","Künye (Impressum)","Imprint","بيانات النشر (Impressum)","Impressum","Impressum","Impressum"],
-  privacy:["Datenschutz","Gizlilik","Privacy","الخصوصية","Конфиденциальность","Prywatność","Конфіденційність"]
+  privacy:["Datenschutz","Gizlilik","Privacy","الخصوصية","Конфиденциальность","Prywatność","Конфіденційність"],
+  wish_h:["Wunschliste","İstek listesi","Wish list","قائمة الرغبات","Список желаний","Lista życzeń","Список бажань"],
+  wish_add:["Zur Wunschliste hinzufügen","İstek listesine ekle","Add to wish list","أضف إلى قائمة الرغبات","Добавить в список желаний","Dodaj do listy życzeń","Додати до списку бажань"],
+  total:["Summe","Toplam","Total","المجموع","Итого","Razem","Разом"],
+  clear:["Leeren","Temizle","Clear","مسح","Очистить","Wyczyść","Очистити"],
+  remove:["Entfernen","Kaldır","Remove","إزالة","Удалить","Usuń","Видалити"],
+  wish_hint:["Nur eine Merkliste. Online bestellen ist bald verfügbar.","Sadece bir hatırlatma listesi. Online sipariş çok yakında.","Just a reminder list. Online ordering is coming soon.","قائمة تذكير فقط. الطلب عبر الإنترنت قريبًا.","Это только список для памяти. Онлайн-заказ скоро появится.","To tylko lista pomocnicza. Zamawianie online wkrótce.","Це лише список для нагадування. Онлайн-замовлення незабаром."]
 };
 const CATS = {
   vorspeisen:["Vorspeisen","Başlangıçlar","Starters","المقبلات","Закуски","Przystawki","Закуски"],
@@ -142,7 +148,7 @@ const MENU = [
 
 // Nur ein Standort (Platzhalter)
 const LOCATIONS = [
-  {name:"Pan Pizza House",street:"Musterstraße 1",city:"12345 Musterstadt",phone:"01234 567890",mail:"info@example.com"}
+  {name:"Pan Pizza Hause",street:"Musterstraße 1",city:"12345 Musterstadt",phone:"01234 567890",mail:"info@example.com"}
 ];
 
 // BEISPIEL-Bewertungen (erfunden). Vor dem echten Start durch echte Google-Bewertungen ersetzen!
@@ -158,18 +164,25 @@ const REVIEWS = [
 ];
 /* ===== end of editable part ===== */
 
+// Eigene Zitate (Reihenfolge der Sprachen wie oben: DE, TR, EN, AR, RU, PL, UA)
+const QUOTES = [
+  ["Der Rand knuspert, der Käse zieht Fäden, und plötzlich ist Montag gar nicht so schlimm.","Kenarlar çıtırdar, peynir uzar ve Pazartesi birden o kadar da kötü gelmez.","The edge crackles, the cheese stretches, and suddenly Monday isn't so bad.","الحواف مقرمشة والجبن يتمدد، وفجأة لا يبدو يوم الاثنين سيئًا إلى هذا الحد.","Хрустит корочка, тянется сыр — и понедельник вдруг уже не так страшен.","Brzeg chrupie, ser się ciągnie i nagle poniedziałek wcale nie jest taki zły.","Хрумтить скоринка, тягнеться сир — і понеділок раптом не такий страшний."],
+  ["Wer Pizza teilt, teilt auch das beste Stück vom Tag.","Pizzayı paylaşan, günün en güzel anını paylaşır.","Share a pizza, share the best part of the day.","من يتشارك البيتزا يتشارك أجمل لحظات اليوم.","Кто делится пиццей, делится лучшей частью дня.","Kto dzieli się pizzą, dzieli się najlepszą częścią dnia.","Хто ділиться піцою, ділиться найкращою частиною дня."],
+  ["Gutes braucht Zeit – und eine heiße Pfanne.","Güzel şeyler zaman ister, bir de sıcak bir tava.","Good things take time, and a hot pan.","الأشياء الجميلة تحتاج إلى وقت، ومقلاة ساخنة.","Хорошее требует времени и горячей сковороды.","Dobre rzeczy wymagają czasu i gorącej patelni.","Добре потребує часу та гарячої пательні."]
+];
+
 let lang = "de", cat = "pizza", tag = "all";
 try { lang = localStorage.getItem("lang") || lang; } catch (e) {}
 if (!LANGS.includes(lang)) lang = "de";
 const $ = s => document.querySelector(s);
 const eur = n => n.toLocaleString({de:"de-DE",tr:"tr-TR",en:"en-GB",ar:"ar-EG-u-nu-latn",ru:"ru-RU",pl:"pl-PL",uk:"uk-UA"}[lang],{style:"currency",currency:"EUR"});
 
-function render() {
+function renderPage() {
   const L = LANGS.indexOf(lang), tr = k => T[k][L];
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = tr(el.dataset.i18n));
-  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  $("#lang-select").value = lang;
   $("#yr").textContent = new Date().getFullYear();
 
   $("#cats").innerHTML = "";
@@ -196,7 +209,8 @@ function render() {
   $("#cards").innerHTML = items.map(i => {
     const tags = i.t.map(k => `<span class="tag">${TAGS[k][L]}</span>`).join("");
     const alg = i.a ? [...i.a].map(c => `<span class="badge" title="${ALG[c][L]}">${c} ${ALG[c][L]}</span>`).join("") : tr("none");
-    const prices = i.p.map((p, k) => `<span><small>${head[k]}</small>${eur(p)}</span>`).join("");
+    const mi = MENU.indexOf(i);
+    const prices = i.p.map((p, k) => `<button class="pbtn" data-w="${mi}:${k}" title="${tr("wish_add")}" aria-label="${tr("wish_add")}: ${i.n} ${sized ? head[k] : ""}"><small>${head[k]}</small>${eur(p)}<i aria-hidden="true">♡</i></button>`).join("");
     return `<article class="card"><img src="images/photos/${i.g}.jpg" onerror="this.onerror=null;this.src='images/${i.g}.svg'" alt="${i.n}" loading="lazy">` +
       `<div class="cb"><h3>${i.n}</h3><div>${tags}</div>` +
       `<p><b>${tr("ingredients")}:</b> ${i.i.map(k => ING[k][L]).join(", ")}</p><p><b>${tr("allergens")}:</b> ${alg}</p>` +
@@ -215,9 +229,54 @@ function render() {
   ).join("");
 }
 
-document.querySelectorAll(".lang button").forEach(b => b.onclick = () => {
-  lang = b.dataset.lang;
-  try { localStorage.setItem("lang", lang); } catch (e) {}
-  render();
+function render() { renderPage(); renderWish(); renderQuote(); }
+
+// ----- Wunschliste (Merkzettel) -----
+let wish = {};
+try { wish = JSON.parse(localStorage.getItem("wish") || "{}"); } catch (e) { wish = {}; }
+const saveWish = () => { try { localStorage.setItem("wish", JSON.stringify(wish)); } catch (e) {} };
+function itemOf(key) {
+  const [m, k] = key.split(":").map(Number), it = MENU[m];
+  return it && it.p[k] != null ? { it, k } : null;
+}
+function renderWish() {
+  const L = LANGS.indexOf(lang), tr = k => T[k][L];
+  const keys = Object.keys(wish).filter(k => itemOf(k) && wish[k] > 0);
+  $("#wish").hidden = keys.length === 0;
+  document.body.classList.toggle("has-wish", keys.length > 0);
+  let sum = 0;
+  $("#wish-list").innerHTML = keys.map(key => {
+    const { it, k } = itemOf(key), q = wish[key], price = it.p[k] * q;
+    sum += price;
+    const size = it.p.length === 3 ? [tr("small"), tr("medium"), tr("large")][k] : "";
+    return `<li><div><strong>${it.n}</strong> ${size ? `<small>${size}</small>` : ""}<br><span class="q"><button data-q="${key}|-1" aria-label="−1">−</button> ${q} <button data-q="${key}|1" aria-label="+1">+</button></span></div>` +
+      `<div class="lp">${eur(price)}<button data-q="${key}|x" aria-label="${tr("remove")}" title="${tr("remove")}">✕</button></div></li>`;
+  }).join("");
+  $("#wish-sum").textContent = eur(sum);
+}
+document.addEventListener("click", e => {
+  const add = e.target.closest("[data-w]");
+  if (add) { const k = add.dataset.w; wish[k] = (wish[k] || 0) + 1; saveWish(); renderWish(); return; }
+  const q = e.target.closest("[data-q]");
+  if (q) {
+    const [k, d] = q.dataset.q.split("|");
+    wish[k] = d === "x" ? 0 : Math.max(0, (wish[k] || 0) + Number(d));
+    if (!wish[k]) delete wish[k];
+    saveWish(); renderWish();
+  }
 });
+$("#wish-clear").onclick = () => { wish = {}; saveWish(); renderWish(); };
+$("#wish-toggle").onclick = () => $("#wish").classList.toggle("collapsed");
+
+// ----- Zitat -----
+let qi = new Date().getDate() % QUOTES.length;
+function renderQuote() { $("#quote-text").textContent = QUOTES[qi][LANGS.indexOf(lang)]; }
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+  setInterval(() => { qi = (qi + 1) % QUOTES.length; renderQuote(); }, 9000);
+
+// ----- Sprach-Dropdown: Deutsch, Englisch, dann die übrigen -----
+const NAMES = {de:"Deutsch", en:"English", tr:"Türkçe", ar:"العربية", ru:"Русский", pl:"Polski", uk:"Українська"};
+const sel = $("#lang-select");
+["de","en","tr","ar","ru","pl","uk"].forEach(c => sel.add(new Option(NAMES[c], c)));
+sel.onchange = () => { lang = sel.value; try { localStorage.setItem("lang", lang); } catch (e) {} render(); };
 render();
