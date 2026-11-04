@@ -191,7 +191,22 @@ const QUOTES2 = [
   ["Mit [[Leidenschaft]] gekocht, mit einem Lächeln serviert.","[[Tutkuyla]] pişirilir, gülümsemeyle servis edilir.","Cooked with [[passion]], served with a smile.","تُطهى بـ[[شغف]] وتُقدَّم بابتسامة.","Готовим со [[страстью]], подаём с улыбкой.","Gotowane z [[pasją]], podawane z uśmiechem.","Готуємо з [[пристрастю]], подаємо з усмішкою."],
   ["Dein Tisch [[wartet]] schon.","Masan seni [[bekliyor]].","Your table is [[waiting]].","طاولتك [[تنتظرك]].","Ваш столик уже [[ждёт]].","Twój stolik już [[czeka]].","Ваш столик уже [[чекає]]."]
 ];
-const QSETS = QUOTES.map((q, i) => [q, QUOTES2[i]]);
+// Dritte und vierte Zitate je Platz
+const QUOTES3 = [
+  ["Ein Biss, und der Tag bekommt [[Extra-Käse]].","Bir ısırık, ve gün [[ekstra peynirli]] olur.","One bite, and the day gets [[extra cheese]].","قضمة واحدة، ويصبح يومك [[بجبن إضافي]].","Один укус — и день становится [[с двойным сыром]].","Jeden kęs i dzień dostaje [[podwójny ser]].","Один укус — і день стає [[з подвійним сиром]]."],
+  ["Aus einer einfachen Pfanne wird [[ein kleines Fest]].","Sade bir tava [[küçük bir şölene]] dönüşür.","A simple pan becomes [[a small celebration]].","مقلاة بسيطة تتحول إلى [[احتفال صغير]].","Простая сковорода превращается в [[маленький праздник]].","Zwykła patelnia zamienia się w [[małe święto]].","Проста пательня стає [[маленьким святом]]."],
+  ["Geteilte Pizza ist [[doppelte Freude]].","Paylaşılan pizza [[çifte mutluluktur]].","Shared pizza is [[double the joy]].","البيتزا المشتركة [[فرحة مضاعفة]].","Пицца на двоих — [[двойная радость]].","Pizza na pół to [[podwójna radość]].","Піца на двох — [[подвійна радість]]."],
+  ["Ein Team, das lacht, backt [[die beste Pizza]].","Gülen bir ekip [[en iyi pizzayı]] pişirir.","A team that laughs bakes [[the best pizza]].","الفريق الذي يضحك يخبز [[أفضل بيتزا]].","Команда, которая смеётся, печёт [[лучшую пиццу]].","Zespół, który się śmieje, piecze [[najlepszą pizzę]].","Команда, яка сміється, пече [[найкращу піцу]]."],
+  ["Setz dich, atme durch, [[lass es dir schmecken]].","Otur, rahatla, [[her lokmanın tadını çıkar]].","Sit down, breathe out, [[enjoy every bite]].","اجلس، وخذ نفسًا، و[[استمتع بكل لقمة]].","Садитесь, выдохните, [[наслаждайтесь каждым кусочком]].","Usiądź, odetchnij, [[ciesz się każdym kęsem]].","Сідайте, видихніть, [[насолоджуйтесь кожним шматочком]]."]
+];
+const QUOTES4 = [
+  ["Knusprig außen, [[weich wie eine Wolke]] innen.","Dışı çıtır, içi [[bulut gibi yumuşak]].","Crispy outside, [[soft as a cloud]] inside.","مقرمشة من الخارج، [[ناعمة كالسحاب]] من الداخل.","Снаружи хрустит, внутри [[мягкая, как облако]].","Na zewnątrz chrupiąca, w środku [[miękka jak chmurka]].","Зовні хрустка, всередині [[м’яка, як хмаринка]]."],
+  ["Hitze, Hefe, Hingabe: das [[Geheimnis]] jedes guten Teigs.","Sıcaklık, maya, özen: her güzel hamurun [[sırrı]].","Heat, yeast, devotion: the [[secret]] of every good dough.","حرارة وخميرة وإخلاص: [[سر]] كل عجينة ناجحة.","Жар, дрожжи, душа: [[секрет]] любого хорошего теста.","Ciepło, drożdże, serce: [[sekret]] każdego dobrego ciasta.","Жар, дріжджі, душа: [[секрет]] кожного доброго тіста."],
+  ["Die besten Gespräche beginnen mit [[dem ersten Stück]].","En güzel sohbetler [[ilk dilimle]] başlar.","The best conversations start with [[the first slice]].","أجمل الأحاديث تبدأ مع [[الشريحة الأولى]].","Лучшие разговоры начинаются с [[первого кусочка]].","Najlepsze rozmowy zaczynają się od [[pierwszego kawałka]].","Найкращі розмови починаються з [[першого шматочка]]."],
+  ["Bei uns zählt [[jede Hand]] – und jedes Lächeln.","Bizde [[her el]] değerlidir, her gülümseme de.","Here, [[every hand]] counts, and every smile.","عندنا [[كل يد]] لها قيمة، وكل ابتسامة أيضًا.","У нас важна [[каждая пара рук]] и каждая улыбка.","U nas liczy się [[każda para rąk]] i każdy uśmiech.","У нас важить [[кожна пара рук]] і кожна усмішка."],
+  ["Frisch aus dem Ofen, [[direkt ins Herz]].","Fırından çıkar, [[doğruca kalbe]] gider.","Fresh from the oven, [[straight to the heart]].","طازجة من الفرن، [[مباشرة إلى القلب]].","Свежая из печи — [[прямо в сердце]].","Prosto z pieca, [[prosto do serca]].","Свіжа з печі — [[просто в серце]]."]
+];
+const QSETS = QUOTES.map((q, i) => [q, QUOTES2[i], QUOTES3[i], QUOTES4[i]]);
 
 // Slogans mit Schreibmaschinen-Effekt über den Buttons
 const TAGLINES = [
@@ -307,7 +322,7 @@ function renderQuoteAt(n) {
   el.classList.remove("anim"); void el.offsetWidth; el.classList.add("anim");
 }
 const renderQuote = () => QSETS.forEach((_, n) => renderQuoteAt(n));
-if (!REDUCED) QSETS.forEach((q, n) => setInterval(() => { qIdx[n] = (qIdx[n] + 1) % q.length; renderQuoteAt(n); }, 7500 + n * 900));
+if (!REDUCED) QSETS.forEach((q, n) => setInterval(() => { qIdx[n] = (qIdx[n] + 1) % q.length; renderQuoteAt(n); }, 4300 + n * 350));
 
 // ----- Slogan: tippt sich selbst, bleibt kurz stehen, beginnt von vorn -----
 let tagI = 0, tagTimer = null;
