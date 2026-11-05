@@ -6,10 +6,8 @@
 <title>Pan Pizza Hause</title>
 <meta name="description" content="Pfannenpizza – fluffig, dick belegt, knusprig am Rand.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 124 124%22%3E%3Ccircle cx=%2262%22 cy=%2262%22 r=%2260%22 fill=%22%23c8102e%22/%3E%3Cg transform=%22translate(8 2) scale(.82)%22%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2242%22 fill=%22%231f1d1b%22 stroke=%22%23fff%22 stroke-width=%225%22/%3E%3Cline x1=%2284%22 y1=%2290%22 x2=%22114%22 y2=%22112%22 stroke=%22%23fff%22 stroke-width=%2212%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2233%22 fill=%22%23e0952f%22/%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2226%22 fill=%22%23f7d36b%22/%3E%3Cpath d=%22M52 58 L52 33 M52 58 L74 71 M52 58 L30 71%22 stroke=%22%23e0952f%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2244%22 cy=%2246%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2262%22 cy=%2252%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2252%22 cy=%2270%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2236%22 cy=%2262%22 r=%223%22 fill=%22%232f8f3f%22/%3E%3Ccircle cx=%2268%22 cy=%2268%22 r=%223%22 fill=%22%232f8f3f%22/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Noto+Sans+Arabic:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Caveat:wght@600;700&family=Oswald:wght@500;700&family=Lobster&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="heat" x="-5%" y="-20%" width="110%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.08" numOctaves="2" seed="3" result="n"><animate attributeName="baseFrequency" dur="3s" values="0.012 0.08;0.017 0.12;0.012 0.08" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="7"/></filter></svg>
@@ -27,9 +25,10 @@
 
 <main>
   <section id="start" class="hero">
+    <video class="hero-media" autoplay muted loop playsinline preload="auto" poster="images/hero-poster.jpg" aria-hidden="true"><source src="images/hero.mp4" type="video/mp4"></video>
+    <div class="hero-shade"></div>
     <div class="hero-text">
-      <h1><span data-i18n="hero_h"></span><span class="soon-big" data-i18n="hero_soon"></span></h1>
-      <p data-i18n="hero_p"></p>
+      <h1 data-i18n="hero_t"></h1>
       <p class="tagline"><span id="tag-text" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span></p>
       <div class="actions">
         <button class="btn" disabled><span data-i18n="order"></span><em data-i18n="soon"></em></button>
@@ -39,7 +38,6 @@
       <p class="deliv-note" data-i18n="deliv"></p>
       <div id="deliv-links" class="actions"></div>
     </div>
-    <img class="hero-img" src="images/hero.svg" alt="Pan pizza served in the pan">
   </section>
 
   <section class="feat">
@@ -57,25 +55,22 @@
       <nav id="cats" class="cats" aria-label="Categories"></nav>
       <div><div id="cards" class="cards"></div><p id="empty" class="empty" hidden data-i18n="empty"></p></div>
     </div>
+    <p class="note" id="menu-notes"></p>
   </section>
 
   <section class="qband q2"><p class="qt" data-quote="1"></p></section>
 
   <section id="galerie" class="gal">
     <h2 data-i18n="gal_h"></h2>
-    <div class="gallery">
-      <img src="images/photos/restaurant-1.jpg" onerror="this.onerror=null;this.src='images/restaurant-1.svg'" alt="Restaurant interior" loading="lazy">
-      <img src="images/photos/restaurant-2.jpg" onerror="this.onerror=null;this.src='images/restaurant-2.svg'" alt="Open kitchen with pans" loading="lazy">
-      <img src="images/photos/restaurant-3.jpg" onerror="this.onerror=null;this.src='images/restaurant-3.svg'" alt="Restaurant front" loading="lazy">
-    </div>
-  </section>
+    <div class="car"><button class="car-btn prev" aria-label="Previous">‹</button><button class="car-btn next" aria-label="Next">›</button><div class="gallery track">\1\n    </div></div>\n  </section>
 
-  <section class="qband q3"><p class="qt" data-quote="2"></p></section>
+  <section class="qband q3 frame"><figure class="polaroid"><img src="images/photos/restaurant-2.jpg" onerror="this.onerror=null;this.src='images/restaurant-2.svg'" alt=""><figcaption>Pan Pizza Hause</figcaption></figure><p class="qt" data-quote="2"></p></section>
 
   <section id="bewertungen" class="revs">
     <h2 data-i18n="rev_h"></h2>
     <p class="rating"><strong id="avg"></strong> <span class="stars">★★★★★</span> <span data-i18n="rev_sub"></span></p>
-    <div id="rev-list" class="rev-list"></div>
+    <div class="car"><button class="car-btn prev" aria-label="Previous">‹</button><button class="car-btn next" aria-label="Next">›</button><div id="rev-list" class="rev-list track"></div></div>
+    <p class="rv-cta"><button id="rv-open" class="btn solid dl" data-i18n="rv_btn"></button></p>
   </section>
 
   <section class="qband q5"><p class="qt" data-quote="4"></p></section>
@@ -103,14 +98,18 @@
   <span>© <span id="yr"></span> Pan Pizza Hause</span>
   <a href="impressum.html" data-i18n="imprint"></a>
   <a href="datenschutz.html" data-i18n="privacy"></a>
+  <a href="#" id="ck-open" data-i18n="ck_settings"></a>
 </footer>
+<div id="opt" class="modal" hidden role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-x" data-close aria-label="Close">✕</button><div id="opt-body"></div></div></div>
+<div id="rv" class="modal" hidden role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-x" data-close aria-label="Close">✕</button><div id="rv-body"></div></div></div>
+<div id="ck" class="ck" hidden role="dialog" aria-label="Cookies"><h3 data-i18n="ck_title"></h3><p data-i18n="ck_text"></p><label class="ck-row"><input type="checkbox" id="ck-func"> <span data-i18n="ck_func"></span></label><div class="ck-btns"><button id="ck-only" class="btn dl" data-i18n="ck_only"></button><button id="ck-save" class="btn dl" data-i18n="ck_save"></button><button id="ck-all" class="btn solid dl" data-i18n="ck_all"></button></div></div>
 <aside id="wish" class="wish" hidden aria-live="polite">
-  <div class="wish-head"><h3 data-i18n="wish_h"></h3><button id="wish-toggle" class="icon-btn" aria-label="Toggle">▾</button></div>
+  <div class="wish-head"><h3 data-i18n="wish_h"></h3><span id="wish-mini"></span><button id="wish-toggle" class="icon-btn" aria-label="Toggle">▾</button></div>
   <ul id="wish-list"></ul>
   <div class="wish-total"><span data-i18n="total"></span><strong id="wish-sum"></strong></div>
   <p class="wish-hint" data-i18n="wish_hint"></p>
   <button id="wish-clear" class="btn-small" data-i18n="clear"></button>
 </aside>
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 </body>
 </html>

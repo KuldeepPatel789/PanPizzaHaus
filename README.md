@@ -1,20 +1,25 @@
 # Pan Pizza Hause – Website
 
-Statische Seite (HTML/CSS/JS), keine Build-Tools nötig. Sprachen: DE, TR, EN, AR (rechts-nach-links), RU, PL, UA.
+Statische Seite (HTML/CSS/JS). Sprachen: DE, EN, TR, AR, RU, PL, UA (wird automatisch erkannt).
 
-## Anpassen
-Alles Wichtige steht oben in `app.js`: Texte (`T`), Speisekarte (`MENU`), Standort (`LOCATIONS`), Bewertungen (`REVIEWS`).
-Preise `[klein, mittel, groß]` oder ein einzelner Preis `[x]`. Beispielpreise/-allergene/-bewertungen vor dem Start ersetzen.
+## Speisekarte ändern (ohne Programmieren)
+Öffne `speisekarte.csv` in Excel oder Google Sheets (Trennzeichen Semikolon, UTF-8). Jede Zeile ist ein Gericht.
+- **Kategorie:** vorspeisen, pizza, pasta, salate, desserts, getraenke
+- **Name / EN / TR / AR / RU / PL / UK:** Name auf Deutsch; die anderen Spalten sind optional (leer = Deutsch bzw. Englisch)
+- **Tags:** chicken, beef, veggie, fish, spicy, alcohol (mit Komma) – daraus entstehen die Filter
+- **Klein / Mittel / Groß:** Preise bei Pizza, oder **Preis** bei allem mit nur einem Preis (Komma als Dezimalzeichen)
+- **Zutaten:** durch Komma getrennt, deutsch (bekannte Zutaten werden automatisch übersetzt)
+- **Allergene:** Buchstaben a–o, Zusatzstoffe als Zahlen, z. B. `a,g,7,8`
+- **Menge:** z. B. `0,33 l`
+- Sonderzeilen: Kategorie `extra` (Zutat hinzufügen, Preise je Größe), `kaeserand` (Aufpreis), `sosse` (Tag `gratis` = zählt zu den Gratis-Soßen), `einstellung` (Anzahl Gratis-Soßen pro Pizza)
+- Speichern, hochladen, fertig: Preise erscheinen automatisch auf der Seite.
 
-## Echte Fotos einsetzen
-Lege JPG-Dateien in den Ordner `images/photos/`. Sie werden automatisch statt der Zeichnungen verwendet:
-- `hero.jpg` (großes Startbild), `restaurant-1.jpg`, `restaurant-2.jpg`, `restaurant-3.jpg`
-- Gerichte: garlic-bread, mozzarella-sticks, wings, pizza-margherita, pizza-pepperoni, pizza-bbq, pizza-pesto, pizza-veggie, pizza-diavola, penne, alfredo, bolognese, caesar, salad, tiramisu, brownie, cola, lemonade (jeweils `.jpg`)
-Nur Fotos verwenden, an denen du die Rechte hast (eigene Fotos oder Lizenz wie bei Unsplash/Pexels).
+## Fotos
+Foto eines Gerichts: `images/photos/<name-klein-mit-bindestrichen>.jpg`, z. B. `spicy-chicken.jpg` (Umlaute ae/oe/ue). Ohne Foto erscheint eine Zeichnung.
+Weitere Fotos: `hero-poster.jpg` (Startbild), `restaurant-1.jpg`, `restaurant-2.jpg`, `restaurant-3.jpg`.
 
-## Online (GitHub Pages)
-Settings → Pages → Branch `main`, Ordner `/ (root)`. `index.html` muss direkt im Hauptverzeichnis des Repos liegen.
+## Einstellungen in app.js
+`OPENING` (Öffnungszeiten), `LOCATIONS` (Adresse), `DELIVERY` (Lieferando/Uber-Eats-Links), `GOOGLE_REVIEW_URL`, `REVIEWS` (Beispiel-Bewertungen ersetzen).
 
-## Offen
-- Bestellen/Reservieren sind deaktiviert („bald verfügbar").
-- Impressum und Datenschutz mit echten Angaben füllen.
+## Rechtliches
+`impressum.html` und `datenschutz.html` sind Muster: ausfüllen und prüfen lassen.
