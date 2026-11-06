@@ -15,8 +15,13 @@ Statische Seite (HTML/CSS/JS). Sprachen: DE, EN, TR, AR, RU, PL, UA (wird automa
 - Speichern, hochladen, fertig: Preise erscheinen automatisch auf der Seite.
 
 ## Fotos
-Foto eines Gerichts: `images/photos/<name-klein-mit-bindestrichen>.jpg`, z. B. `spicy-chicken.jpg` (Umlaute ae/oe/ue). Ohne Foto erscheint eine Zeichnung.
-Weitere Fotos: `hero-poster.jpg` (Startbild), `restaurant-1.jpg`, `restaurant-2.jpg`, `restaurant-3.jpg`.
+Alle Fotos kommen in den Ordner `images/photos/`, Dateiendung **.jpg**, alles **klein** geschrieben (GitHub unterscheidet Groß/Klein).
+- **Gerichte:** Dateiname = Name des Gerichts, deutsch ODER englisch, z. B. `gemischter-salat.jpg` oder `mixed-salad.jpg`. Die komplette Liste steht in `foto-namen.txt`. Ohne Foto erscheint eine Zeichnung.
+- **Einblicke (großes Foto mit Zitat):** `einblick-1.jpg`, `einblick-2.jpg`, `einblick-3.jpg` ... ohne Lücken, beliebig viele. Sie wechseln automatisch, mit Pfeilen links/rechts.
+- **Startbild:** `images/hero.mp4` (Video) und `images/hero-poster.jpg` (Standbild) ersetzen, am besten in Full-HD.
+
+## Bewertungen
+Stehen in `app.js` bei `REVIEWS`, beliebig viele. Pro Seite zeigt die Seite je nach Bildschirm 1, 2, 4 oder 8 Bewertungen, dann geht es mit den Pfeilen weiter.
 
 ## Einstellungen in app.js
 `OPENING` (Öffnungszeiten), `LOCATIONS` (Adresse), `DELIVERY` (Lieferando/Uber-Eats-Links), `GOOGLE_REVIEW_URL`, `REVIEWS` (Beispiel-Bewertungen ersetzen).

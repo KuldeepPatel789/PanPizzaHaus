@@ -1,6 +1,6 @@
 :root{--bg:#3a0710;--bg2:#470a15;--card:#5a0e1d;--red:#e5173a;--hot:#c8102e;--line:#ffffff24;--muted:#ffffffb8}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
+html{scroll-behavior:auto}
 body{margin:0;font-family:"Bricolage Grotesque","Noto Sans Arabic",system-ui,sans-serif;color:#fff;background:var(--bg);line-height:1.55}
 a{color:inherit}
 :focus-visible{outline:3px solid #fff;outline-offset:2px}
@@ -303,12 +303,44 @@ footer a{margin-inline-start:4px}
   .qband{padding:44px 16px}
   .q2 .qt{padding:24px 22px}.q5 .qt{padding:20px 22px}
   .q3.frame{grid-template-columns:1fr;gap:22px}.polaroid{max-width:230px;margin:0 auto}
-  .track{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;scrollbar-width:none;padding-bottom:4px}
-  .track::-webkit-scrollbar{display:none}
-  .track>*{flex:0 0 86%;scroll-snap-align:center}
-  .gallery.track img{aspect-ratio:16/10}
-  .car-btn{display:grid;place-items:center;position:absolute;top:calc(50% - 20px);z-index:2;width:38px;height:38px;border-radius:99px;border:0;background:#000a;color:#fff;font-size:1.5rem;cursor:pointer}
-  .car-btn.prev{inset-inline-start:2px}.car-btn.next{inset-inline-end:2px}
 }
 
 .legal{max-width:760px;margin:0 auto;padding:32px 20px 60px}.legal h2{font-size:1.2rem;margin-top:1.6em;color:#fff}.legal p{color:var(--muted)}.legal a{color:#ffd76a}
+
+/* ---- v9 ---- */
+[hidden]{display:none!important}
+html{scroll-behavior:auto!important}
+.top nav a[aria-current]{text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:2px}
+.btn:disabled{opacity:.55}
+/* hero video: whole frame visible, right side, fading into the dark red */
+.hero-media{inset:auto 0 0 auto;top:0;right:0;left:auto;width:64%;height:100%;object-fit:contain;object-position:right center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 24%,#000 94%,transparent 100%)}
+html[dir="rtl"] .hero-media{right:auto;left:0;object-position:left center;transform:scaleX(-1)}
+.hero-shade{background:linear-gradient(90deg,#3a0710 0%,#3a0710d9 36%,#3a071000 66%)}
+html[dir="rtl"] .hero-shade{transform:scaleX(-1)}
+/* carousels: any number of items, buttons always, spring back at the end */
+.track{scrollbar-width:none}.track::-webkit-scrollbar{display:none}
+.track>*{scroll-snap-align:start}
+.car-btn{display:grid;place-items:center;position:absolute;top:calc(50% - 21px);z-index:2;width:42px;height:42px;border-radius:99px;border:0;background:#000b;color:#fff;font-size:1.6rem;cursor:pointer}
+.car-btn.prev{inset-inline-start:6px}.car-btn.next{inset-inline-end:6px}
+.car.noscroll .car-btn{display:none}
+.rev-list{--cols:1;--rows:1}
+@media(min-width:761px){.rev-list{--cols:2}}
+@media(min-width:1101px){.rev-list{--cols:4}}
+@media(min-width:1501px){.rev-list{--rows:2}}
+.rev-list.track{display:grid;grid-auto-flow:column;grid-template-rows:repeat(var(--rows),auto);grid-auto-columns:calc((100% - (var(--cols) - 1) * 12px) / var(--cols));gap:12px;overflow-x:auto;scroll-snap-type:x proximity;grid-template-columns:none}
+.slides.track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:18px}
+.slides img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-radius:18px;max-height:78vh;scroll-snap-align:center}
+@keyframes springBack{0%{transform:translateX(44px)}38%{transform:translateX(-14px)}68%{transform:translateX(6px)}100%{transform:none}}
+.track.spring{animation:springBack .65s ease-out}
+/* Einblicke: one big photo with the quote beside it */
+.insight{text-align:start;padding:56px max(20px,calc((100% - 1240px)/2))}
+.insight h2{text-align:start}
+.insight-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:36px;align-items:center}
+.insight .qt{margin:0;max-width:none;text-align:start}
+.slider{position:relative}
+@media(max-width:900px){.insight-grid{grid-template-columns:1fr;gap:20px}}
+@media(max-width:760px){
+  .hero-media{width:100%;object-fit:cover;object-position:56% 30%;-webkit-mask-image:none;mask-image:none}
+  .hero-shade{background:linear-gradient(180deg,#3a071055,#3a0710d9 48%,#3a0710f5)}
+  .insight{padding:34px 14px}
+}

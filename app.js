@@ -104,8 +104,12 @@ const ING_NEW = {
   "Karotten":["Karotten","Havuç","Carrots","جزر","Морковь","Marchewka","Морква"],"Gurken":["Gurken","Salatalık","Cucumber","خيار","Огурцы","Ogórki","Огірки"],"Feta":["Feta","Beyaz peynir","Feta","جبنة فيتا","Фета","Feta","Фета"],
   "Brot":["Brot","Ekmek","Bread","خبز","Хлеб","Chleb","Хліб"],"Kartoffeln":["Kartoffeln","Patates","Potatoes","بطاطس","Картофель","Ziemniaki","Картопля"],"Nudeln":["Nudeln","Makarna","Pasta","معكرونة","Паста","Makaron","Паста"],
   "Ketchup":["Ketchup","Ketçap","Ketchup","كاتشب","Кетчуп","Ketchup","Кетчуп"],"Mayo":["Mayo","Mayonez","Mayo","مايونيز","Майонез","Majonez","Майонез"],
-  "Knoblauchsoße":["Knoblauchsoße","Sarımsak sosu","Garlic sauce","صلصة الثوم","Чесночный соус","Sos czosnkowy","Часниковий соус"],"Scharfe Soße":["Scharfe Soße","Acı sos","Hot sauce","صلصة حارة","Острый соус","Ostry sos","Гострий соус"]
+  "Knoblauchsoße":["Knoblauchsoße","Sarımsak sosu","Garlic sauce","صلصة الثوم","Чесночный соус","Sos czosnkowy","Часниковий соус"],"Scharfe Soße":["Scharfe Soße","Acı sos","Hot sauce","صلصة حارة","Острый соус","Ostry sos","Гострий соус"],
+  "Tortellini":["Tortellini","Tortellini","Tortellini","تورتيليني","Тортеллини","Tortellini","Тортелліні"],"Spaghetti":["Spaghetti","Spagetti","Spaghetti","سباغيتي","Спагетти","Spaghetti","Спагеті"],"Tagliatelle":["Tagliatelle","Tagliatelle","Tagliatelle","تالياتيلي","Тальятелле","Tagliatelle","Тальятелле"],
+  "Zitrone":["Zitrone","Limon","Lemon","ليمون","Лимон","Cytryna","Лимон"],"Pfirsich":["Pfirsich","Şeftali","Peach","خوخ","Персик","Brzoskwinia","Персик"],"Still":["Still","Sade","Still","عادي","Без газа","Niegazowana","Без газу"],"Medium":["Medium","Hafif gazlı","Medium","خفيف الغاز","Слабогазированная","Średnio gazowana","Слабогазована"],
+  "Joghurt":["Joghurt","Yoğurt","Yoghurt","زبادي","Йогурт","Jogurt","Йогурт"],"Balsamico":["Balsamico","Balzamik","Balsamic","بلسميك","Бальзамик","Balsamico","Бальзамік"],"Honig-Senf":["Honig-Senf","Bal-hardal","Honey mustard","عسل وخردل","Медово-горчичный","Miodowo-musztardowy","Медово-гірчичний"],"Essig-Öl":["Essig-Öl","Sirke-yağ","Vinaigrette","خل وزيت","Уксус-масло","Ocet-olej","Оцет-олія"]
 };
+Object.assign(T, {opt_choose:["Bitte wählen","Lütfen seç","Please choose","الرجاء الاختيار","Выберите","Wybierz","Оберіть"]});
 
 const CATS = {
   vorspeisen:["Vorspeisen","Başlangıçlar","Starters","المقبلات","Закуски","Przystawki","Закуски"],
@@ -276,7 +280,7 @@ const QFX = [
 
 
 // Emoji hinter dem hervorgehobenen Wort (je Platz 4 Zitate)
-const QEMO = [["😋","🍕","🧀","☁️"],["🔥","📖","🎉","🤫"],["☀️","😋","🎊","🍕"],["👨‍🍳","❤️","🏆","🤝"],["😄","🪑","🍴","❤️"]];
+const QEMO = [["","","🧀",""],["🔥","","",""],["","","",""],["","","",""],["","","","❤️"]];
 
 // Slogans mit Schreibmaschinen-Effekt über den Buttons
 const TAGLINES = [
@@ -347,7 +351,8 @@ async function loadMenu() {
         MENU.push({c:k, names, t:(r.Tags || "").split(/[,\s]+/).filter(Boolean), p:sized ? n3 : [single], sized,
           ing:(r.Zutaten || "").split(",").map(x => x.trim()).filter(Boolean),
           al:codes.filter(x => /^[a-z]$/i.test(x)).map(x => x.toLowerCase()), ad:codes.filter(x => /^\d+$/.test(x)),
-          vol:r.Menge || "", g:r.Bild || ""});
+          vol:r.Menge || "", g:r.Bild || "",
+          choices:(r.Auswahl || "").split("/").map(g => g.split("|").map(x => x.trim()).filter(Boolean)).filter(g => g.length)});
       }
     });
     menuError = false;
@@ -363,17 +368,20 @@ function hoursHTML() {
   const open = !!h && mins >= toM(h[0]) && mins < toM(h[1]);
   return `<h4>${tr("open_h")}</h4><p class="open ${open ? "on" : "off"}">● ${tr(open ? "open_now" : "open_closed")}</p><table class="hours">${rows}</table>`;
 }
+const sizeLabels = it => it.sized ? (it.vol.includes("|") ? it.vol.split("|").map(x => x.trim()) : [tr("small"), tr("medium"), tr("large")]) : [tr("price")];
+window.imgNext = img => { const c = (img.dataset.c || "").split("|").filter(Boolean), k = +(img.dataset.k || 0); if (k < c.length) { img.dataset.k = k + 1; img.src = "images/photos/" + c[k] + ".jpg"; } else { img.onerror = null; img.src = img.dataset.fb; } };
 function cardHTML(i, mi) {
-  const name = i.names[L()], base = i.g || slug(i.names[0]);
+  const name = i.names[L()], cands = [...new Set([i.g, slug(i.names[0]), slug(i.names[2])].filter(Boolean))];
   const fb = i.t.includes("alcohol") ? (/wein|prosecco|spritz|aperol|hugo|gin|limoncello|grappa/i.test(i.names[0]) ? "wine" : "beer") : (FALLBACK[i.c] || "cola");
   const tags = i.t.filter(k => TAGS[k]).map(k => `<span class="tag">${TAGS[k][L()]}</span>`).join("");
   const alg = i.al.length ? i.al.map(c => `<span class="badge" title="${ALG[c] ? ALG[c][L()] : c}">${c.toUpperCase()}</span>`).join("") : tr("none");
   const add = i.ad.map(n => `<span class="badge add" title="${ADD[n] || ""}">${n}</span>`).join("");
-  const head = i.sized ? [tr("small"), tr("medium"), tr("large")] : [tr("price")];
+  const head = sizeLabels(i);
   const prices = i.p.map((p, k) => p == null ? "" : `<button class="pbtn" data-w="${mi}:${k}" aria-label="${esc(tr("wish_add") + ": " + name + " " + (i.sized ? head[k] : ""))}"><small>${head[k]}</small>${eur(p)}<i aria-hidden="true">♡</i></button>`).join("");
-  return `<article class="card"><img src="images/photos/${base}.jpg" onerror="this.onerror=null;this.src='images/${fb}.svg'" alt="${esc(name)}" loading="lazy"><div class="cb"><h3>${esc(name)}</h3><div>${tags}</div>` +
-    (i.ing.length ? `<p><b>${tr("ingredients")}:</b> ${esc(i.ing.map(ingName).join(", "))}</p>` : "") +
-    `<p><b>${tr("allergens")}:</b> ${alg} ${add}</p>${i.vol ? `<p class="vol">${esc(i.vol)}</p>` : ""}<div class="prices">${prices}</div></div></article>`;
+  const ch = i.choices.length ? `<p><b>${tr("opt_choose")}:</b> ${esc(i.choices.map(g => g.map(ingName).join(" / ")).join(" · "))}</p>` : "";
+  return `<article class="card"><img src="images/photos/${cands[0]}.jpg" data-c="${cands.slice(1).join("|")}" data-k="0" data-fb="images/${fb}.svg" onerror="imgNext(this)" alt="${esc(name)}" loading="lazy"><div class="cb"><h3>${esc(name)}</h3><div>${tags}</div>` +
+    (i.ing.length ? `<p><b>${tr("ingredients")}:</b> ${esc(i.ing.map(ingName).join(", "))}</p>` : "") + ch +
+    `<p><b>${tr("allergens")}:</b> ${alg} ${add}</p>${i.vol && !i.vol.includes("|") ? `<p class="vol">${esc(i.vol)}</p>` : ""}<div class="prices">${prices}</div></div></article>`;
 }
 function renderPage() {
   document.documentElement.lang = lang; document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
@@ -396,14 +404,14 @@ function renderPage() {
   const items = MENU.map((i, mi) => [i, mi]).filter(([i]) => i.c === cat && (tag === "all" || i.t.includes(tag)));
   $("#cards").innerHTML = menuError ? '<p class="empty">speisekarte.csv konnte nicht geladen werden.</p>' : items.map(([i, mi]) => cardHTML(i, mi)).join("");
   $("#empty").hidden = items.length > 0 || menuError || !MENU.length;
-  $("#menu-notes").innerHTML = esc(tr("menu_note")) + (cat === "getraenke" ? "<br>" + esc(tr("alc_note")) : "") + "<br><small>" + esc(ADDLEG) + "</small>";
+  $("#menu-notes").innerHTML = esc(tr("menu_note")) + (cat === "getraenke" ? "<br>" + esc(tr("alc_note")) : "") + "<br><small><b>" + esc(tr("allergens")) + ":</b> " + esc(Object.entries(ALG).map(([k, v]) => k.toUpperCase() + " = " + v[L()]).join(", ")) + "</small><br><small>" + esc(ADDLEG) + "</small>";
 
   $("#loc-list").innerHTML = LOCATIONS.map(l => `<div class="loc"><h3>${l.name}</h3><p>${l.street}<br>${l.city}</p><p><a href="tel:${l.phone.replace(/\s/g, "")}">${l.phone}</a><br><a href="mailto:${l.mail}">${l.mail}</a></p>${hoursHTML()}</div>`).join("");
   const avg = REVIEWS.reduce((s, r) => s + r.s, 0) / REVIEWS.length;
   $("#avg").textContent = avg.toLocaleString("en-GB", {maximumFractionDigits:1});
   $("#rev-list").innerHTML = REVIEWS.map(r => `<figure class="rev"><div class="stars" aria-label="${r.s}/5">${"★".repeat(r.s)}${"☆".repeat(5 - r.s)}</div><blockquote>${r.t}</blockquote><figcaption>${r.n}<span class="lg">${r.l}</span> · Google</figcaption></figure>`).join("");
 }
-function render() { renderPage(); renderWish(); }
+function render() { renderPage(); renderWish(); updateCars(); }
 
 /* ===================== Preise, Optionen, Wunschliste ===================== */
 function unitPrice(it, k, o) {
@@ -434,8 +442,8 @@ function renderWish() {
   let sum = 0, cnt = 0;
   $("#wish-list").innerHTML = rows.map(w => {
     const it = MENU[w.m], line = unitPrice(it, w.k, w.o) * w.q, i = wish.indexOf(w); sum += line; cnt += w.q;
-    const size = it.sized ? [tr("small"), tr("medium"), tr("large")][w.k] : "", o = w.o;
-    const det = o ? [...o.rem.map(x => "−" + ingName(x)), ...o.add.map(x => "+" + ingName(x)), o.kaese && KAESE ? "+" + KAESE.names[L()] : "", ...o.sauce.map(x => { const s = SAUCES.find(s => s.names[0] === x); return s ? s.names[L()] : x; })].filter(Boolean).join(", ") : "";
+    const size = it.sized ? sizeLabels(it)[w.k] : "", o = w.o;
+    const det = o ? [...(o.choice || []).map(ingName), ...o.rem.map(x => "−" + ingName(x)), ...o.add.map(x => "+" + ingName(x)), o.kaese && KAESE ? "+" + KAESE.names[L()] : "", ...o.sauce.map(x => { const s = SAUCES.find(s => s.names[0] === x); return s ? s.names[L()] : x; })].filter(Boolean).join(", ") : "";
     return `<li><div><strong>${esc(it.names[L()])}</strong> ${size ? `<small>${size}</small>` : ""}${det ? `<br><small class="det">${esc(det)}</small>` : ""}<br><span class="q"><button data-q="${i}|-1" aria-label="−1">−</button> ${w.q} <button data-q="${i}|1" aria-label="+1">+</button></span></div>` +
       `<div class="lp">${eur(line)}<button data-q="${i}|x" aria-label="${esc(tr("remove"))}" title="${esc(tr("remove"))}">✕</button></div></li>`;
   }).join("");
@@ -446,27 +454,29 @@ const openModal = id => { $(id).hidden = false; document.body.classList.add("mod
 const closeModals = () => { $$(".modal").forEach(m => m.hidden = true); document.body.classList.remove("modal-open"); };
 
 function openOptions(m, k) {
-  const it = MENU[m], pizza = it.c === "pizza", size = it.sized ? [tr("small"), tr("medium"), tr("large")][k] : "";
+  const it = MENU[m], pizza = it.c === "pizza", ext = HAS_OPT(it.c) && EXTRAS.length > 0, size = it.sized ? sizeLabels(it)[k] : "";
   const exP = e => pizza ? e.p[k] : (e.p[3] != null ? e.p[3] : e.p[1]);
-  $("#opt-body").innerHTML = `<h3>${esc(it.names[L()])} <small>${size}</small></h3>` +
-    (it.ing.length ? `<fieldset><legend>${tr("opt_remove")}</legend><div class="opts">${it.ing.map((x, i) => `<label><input type="checkbox" data-r="${i}" checked> ${esc(ingName(x))}</label>`).join("")}</div></fieldset>` : "") +
-    `<fieldset><legend>${tr("opt_extras")}</legend><div class="opts">${EXTRAS.filter(e => exP(e) != null).map(e => `<label><input type="checkbox" data-e="${EXTRAS.indexOf(e)}"> ${esc(ingName(e.names[0]))} <em>+${eur(exP(e))}</em></label>`).join("")}</div></fieldset>` +
-    (pizza && KAESE && KAESE.p[k] != null ? `<fieldset><label class="big"><input type="checkbox" data-k> ${esc(KAESE.names[L()])} <em>+${eur(KAESE.p[k])}</em></label></fieldset>` : "") +
-    (pizza && SAUCES.length ? `<fieldset><legend>${tr("opt_sauces")}</legend><div class="opts">${SAUCES.map((s, i) => `<label><input type="checkbox" data-s="${i}"> ${esc(s.names[L()])} <em data-sp="${i}"></em></label>`).join("")}</div></fieldset>` : "") +
+  $("#opt-body").innerHTML = `<h3>${esc(it.names[L()])} <small>${esc(size)}</small></h3>` +
+    it.choices.map((g, gi) => `<fieldset><legend>${tr("opt_choose")} *</legend><div class="opts">${g.map((x, xi) => `<label><input type="radio" name="ch${gi}" value="${xi}"> ${esc(ingName(x))}</label>`).join("")}</div></fieldset>`).join("") +
+    (ext && it.ing.length ? `<fieldset><legend>${tr("opt_remove")}</legend><div class="opts">${it.ing.map((x, i) => `<label><input type="checkbox" data-r="${i}" checked> ${esc(ingName(x))}</label>`).join("")}</div></fieldset>` : "") +
+    (ext ? `<fieldset><legend>${tr("opt_extras")}</legend><div class="opts">${EXTRAS.filter(e => exP(e) != null).map(e => `<label><input type="checkbox" data-e="${EXTRAS.indexOf(e)}"> ${esc(ingName(e.names[0]))} <em>+${eur(exP(e))}</em></label>`).join("")}</div></fieldset>` : "") +
+    (pizza && ext && KAESE && KAESE.p[k] != null ? `<fieldset><label class="big"><input type="checkbox" data-k> ${esc(KAESE.names[L()])} <em>+${eur(KAESE.p[k])}</em></label></fieldset>` : "") +
+    (pizza && ext && SAUCES.length ? `<fieldset><legend>${tr("opt_sauces")}</legend><div class="opts">${SAUCES.map((s, i) => `<label><input type="checkbox" data-s="${i}"> ${esc(s.names[L()])} <em data-sp="${i}"></em></label>`).join("")}</div></fieldset>` : "") +
     `<div class="opt-foot"><span>${tr("total")}: <strong id="opt-sum"></strong></span><button id="opt-add" class="btn solid dl">${tr("opt_add")}</button></div>`;
   const read = () => ({
+    choice:it.choices.map((g, gi) => { const c = $(`#opt-body [name="ch${gi}"]:checked`); return c ? g[+c.value] : null; }),
     rem:$$("#opt-body [data-r]").filter(c => !c.checked).map(c => it.ing[+c.dataset.r]),
     add:$$("#opt-body [data-e]").filter(c => c.checked).map(c => EXTRAS[+c.dataset.e].names[0]),
     kaese:!!($("#opt-body [data-k]") || {}).checked,
     sauce:$$("#opt-body [data-s]").filter(c => c.checked).map(c => SAUCES[+c.dataset.s].names[0])
   });
   const calc = () => {
-    $("#opt-sum").textContent = eur(unitPrice(it, k, read()));
+    const o = read(); $("#opt-sum").textContent = eur(unitPrice(it, k, o)); $("#opt-add").disabled = o.choice.some(x => !x);
     let free = 0;
     SAUCES.forEach((s, i) => { const box = $(`#opt-body [data-s="${i}"]`); if (!box) return; const isFree = s.free && free < FREE; if (box.checked && isFree) free++; $(`[data-sp="${i}"]`).textContent = isFree ? tr("opt_free") : "+" + eur(s.price); });
   };
   $("#opt-body").onchange = calc; calc();
-  $("#opt-add").onclick = () => { addWish(m, k, read()); closeModals(); };
+  $("#opt-add").onclick = () => { const o = read(); if (o.choice.some(x => !x)) return; addWish(m, k, o); closeModals(); };
   openModal("#opt");
 }
 
@@ -500,25 +510,47 @@ function saveConsent(f) {
 }
 
 /* ===================== Karussell (Handy: Auto-Scroll + Pfeile) ===================== */
+const updateCars = () => $$(".car").forEach(c => { const tk = c.querySelector(".track"); c.classList.toggle("noscroll", tk.scrollWidth <= tk.clientWidth + 4); });
+function springHome(tk) {
+  const from = tk.scrollLeft, t0 = performance.now(), dur = 480;
+  tk.style.scrollSnapType = "none";
+  const f = t => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); tk.scrollLeft = from * (1 - e);
+    if (p < 1) requestAnimationFrame(f); else { tk.style.scrollSnapType = ""; tk.classList.remove("spring"); void tk.offsetWidth; tk.classList.add("spring"); } };
+  requestAnimationFrame(f);
+}
 function initCarousels() {
-  const mq = window.matchMedia("(max-width:760px)");
   $$(".car").forEach(car => {
     const tk = car.querySelector(".track"); let hold = 0;
-    const step = () => tk.clientWidth * 0.86, pause = () => { hold = Date.now() + 9000; };
-    car.querySelector(".prev").onclick = () => { pause(); tk.scrollBy({left:-step(), behavior:"smooth"}); };
-    car.querySelector(".next").onclick = () => { pause(); tk.scrollBy({left:step(), behavior:"smooth"}); };
-    ["touchstart","pointerdown"].forEach(ev => tk.addEventListener(ev, pause, {passive:true}));
-    setInterval(() => {
-      if (!mq.matches || REDUCED || Date.now() < hold || document.hidden) return;
-      if (Math.abs(tk.scrollLeft) + tk.clientWidth >= tk.scrollWidth - 8) tk.scrollTo({left:0, behavior:"smooth"}); else tk.scrollBy({left:step(), behavior:"smooth"});
-    }, 3800);
+    const step = () => tk.clientWidth + 12, atEnd = () => Math.ceil(Math.abs(tk.scrollLeft) + tk.clientWidth) >= tk.scrollWidth - 4;
+    const go = d => { hold = Date.now() + 9000; if (d > 0 && atEnd()) return springHome(tk); tk.scrollBy({left:d * step() * (document.documentElement.dir === "rtl" ? -1 : 1), behavior:"smooth"}); };
+    car.querySelector(".prev").onclick = () => go(-1); car.querySelector(".next").onclick = () => go(1);
+    ["touchstart","pointerdown","mouseenter"].forEach(ev => tk.addEventListener(ev, () => { hold = Date.now() + 9000; }, {passive:true}));
+    setInterval(() => { if (REDUCED || Date.now() < hold || document.hidden || tk.offsetParent === null || car.classList.contains("noscroll")) return; go(1); hold = 0; }, tk.id === "slides" ? 4500 : 6000);
   });
+  window.addEventListener("resize", updateCars);
+}
+const PAGES = ["start","speisekarte","standorte","jobs","kontakt"];
+function route() {
+  let p = location.hash.replace("#", ""); if (!PAGES.includes(p)) p = "start";
+  $$("main > [data-page]").forEach(s => s.hidden = s.dataset.page !== p);
+  $$(".top nav a").forEach(a => a.toggleAttribute("aria-current", a.getAttribute("href") === "#" + p));
+  window.scrollTo(0, 0); updateCars();
+}
+window.addEventListener("hashchange", route);
+// Einblicke: einblick-1.jpg, einblick-2.jpg, ... (so viele wie hochgeladen, ohne Lücken)
+const exists = u => fetch(u, {method:"HEAD"}).then(r => r.ok).catch(() => false);
+async function loadSlides() {
+  let list = [];
+  for (const base of ["einblick", "restaurant"]) { for (let n = 1; n <= 80; n++) { const u = `images/photos/${base}-${n}.jpg`; if (!(await exists(u))) break; list.push(u); } if (list.length) break; }
+  if (!list.length) list = ["images/restaurant-1.svg", "images/restaurant-2.svg", "images/restaurant-3.svg"];
+  $("#slides").innerHTML = list.map((u, i) => `<img src="${u}" alt="Pan Pizza Hause ${i + 1}" loading="${i ? "lazy" : "eager"}">`).join("");
+  updateCars();
 }
 
 /* ===================== Ereignisse ===================== */
 document.addEventListener("click", e => {
   const add = e.target.closest("[data-w]");
-  if (add) { const [m, k] = add.dataset.w.split(":").map(Number); if (HAS_OPT(MENU[m].c) && EXTRAS.length) openOptions(m, k); else addWish(m, k, null); return; }
+  if (add) { const [m, k] = add.dataset.w.split(":").map(Number); if ((HAS_OPT(MENU[m].c) && EXTRAS.length) || MENU[m].choices.length) openOptions(m, k); else addWish(m, k, null); return; }
   const q = e.target.closest("[data-q]");
   if (q) { const [i, d] = q.dataset.q.split("|"), w = wish[+i]; if (!w) return; w.q = d === "x" ? 0 : Math.max(0, w.q + Number(d)); wish = wish.filter(x => x.q > 0); saveWish(); renderWish(); return; }
   if (e.target.closest("[data-close]") || e.target.classList.contains("modal")) closeModals();
@@ -601,7 +633,7 @@ function renderQuoteAt(n) {
   if (["type", "wave", "drop"].includes(fx)) splitUnits(el, ar);
   else if (fx === "flip") splitUnits(el, true);
   const ems = el.querySelectorAll("em");
-  if (ems.length) ems[ems.length - 1].insertAdjacentHTML("afterend", `<span class="emo">${QEMO[n][qIdx[n]]}</span>`);
+  if (ems.length && QEMO[n][qIdx[n]]) ems[ems.length - 1].insertAdjacentHTML("afterend", `<span class="emo">${QEMO[n][qIdx[n]]}</span>`);
   void el.offsetWidth;
   el.className = `qt fx-${fx}` + (fx === "rise" || fx === "press" ? " anim" : "");
   runErase(el, n, token);
@@ -642,5 +674,5 @@ const NAMES = {de:"Deutsch", en:"English", tr:"Türkçe", ar:"العربية", r
 const sel = $("#lang-select");
 ["de","en","tr","ar","ru","pl","uk"].forEach(c => sel.add(new Option(NAMES[c], c)));
 sel.onchange = () => { lang = sel.value; sset("lang", lang); render(); renderQuote(); typeTagline(); };
-render(); renderQuote(); typeTagline(); showCookie(); initCarousels();
+render(); renderQuote(); typeTagline(); showCookie(); initCarousels(); route(); loadSlides();
 loadMenu().then(render);
