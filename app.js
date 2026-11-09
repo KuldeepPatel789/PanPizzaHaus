@@ -529,14 +529,16 @@ function initCarousels() {
   });
   window.addEventListener("resize", updateCars);
 }
-const PAGES = ["start","speisekarte","standorte","jobs","kontakt"];
-function route() {
-  let p = location.hash.replace("#", ""); if (!PAGES.includes(p)) p = "start";
-  $$("main > [data-page]").forEach(s => s.hidden = s.dataset.page !== p);
-  $$(".top nav a").forEach(a => a.toggleAttribute("aria-current", a.getAttribute("href") === "#" + p));
-  window.scrollTo(0, 0); updateCars();
+const SPY = ["start","speisekarte","standorte","jobs","kontakt"];
+let spyBusy = false;
+function spy() {
+  let cur = "start";
+  SPY.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) cur = id; });
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = "kontakt";
+  $$(".top nav a").forEach(a => { const on = a.getAttribute("href") === "#" + cur; a.toggleAttribute("aria-current", on); if (on) { const nav = a.parentElement; nav.scrollLeft = a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2; } });
 }
-window.addEventListener("hashchange", route);
+window.addEventListener("scroll", () => { if (spyBusy) return; spyBusy = true; requestAnimationFrame(() => { spyBusy = false; spy(); }); }, {passive:true});
+window.addEventListener("resize", () => { updateCars(); spy(); });
 // Einblicke: einblick-1.jpg, einblick-2.jpg, ... (so viele wie hochgeladen, ohne Lücken)
 const exists = u => fetch(u, {method:"HEAD"}).then(r => r.ok).catch(() => false);
 async function loadSlides() {
@@ -636,22 +638,25 @@ function renderQuoteAt(n) {
   if (ems.length && QEMO[n][qIdx[n]]) ems[ems.length - 1].insertAdjacentHTML("afterend", `<span class="emo">${QEMO[n][qIdx[n]]}</span>`);
   void el.offsetWidth;
   el.className = `qt fx-${fx}` + (fx === "rise" || fx === "press" ? " anim" : "");
+  if (fx === "type" && !REDUCED) { const us = el.querySelectorAll(".u"); us.forEach(u => { u.style.opacity = 0; }); us.forEach((u, i) => setTimeout(() => { if (qTok[n] === token) u.style.opacity = 1; }, 120 + i * 38)); }
   runErase(el, n, token);
-  return fxDuration(el, fx);
+  const d = fxDuration(el, fx), emo = el.querySelector(".emo");
+  if (emo && el.querySelector("em.fix, em.erase")) emo.style.animationDelay = `${d - 300}ms, ${d + 200}ms`;
+  return d;
 }
-function scheduleQuote(n, extra) {
-  if (REDUCED) return;
+const qTimer = QSETS.map(() => 0), qVis = QSETS.map(() => false);
+function scheduleQuote(n, advance) {
+  clearTimeout(qTimer[n]);
+  if (advance) qIdx[n] = (qIdx[n] + 1) % QSETS[n].length;
   const dur = renderQuoteAt(n);
-  qTok[n] += 0;
-  setTimeout(() => { qIdx[n] = (qIdx[n] + 1) % QSETS[n].length; scheduleQuote(n, 0); }, dur + 2200 + (extra || 0));
+  const tick = () => { qTimer[n] = setTimeout(() => qVis[n] ? scheduleQuote(n, true) : tick(), 700); };
+  qTimer[n] = setTimeout(() => qVis[n] ? scheduleQuote(n, true) : tick(), dur + 2200);
 }
-let quoteStarted = false;
-function renderQuote() {
-  QSETS.forEach((_, n) => renderQuoteAt(n));
-  if (!quoteStarted && !REDUCED) {
-    quoteStarted = true;
-    QSETS.forEach((_, n) => setTimeout(() => { qIdx[n] = (qIdx[n] + 1) % QSETS[n].length; scheduleQuote(n, 0); }, fxDuration(document.querySelector(`[data-quote="${n}"]`), QFX[n][qIdx[n]]) + 2200 + n * 350));
-  }
+function renderQuote() { QSETS.forEach((_, n) => { if (qVis[n] && !REDUCED) scheduleQuote(n, false); else renderQuoteAt(n); }); }
+function watchQuotes() {
+  if (REDUCED || !window.IntersectionObserver) return;
+  const io = new IntersectionObserver(es => es.forEach(e => { const n = +e.target.dataset.quote; if (e.isIntersecting && !qVis[n]) { qVis[n] = true; scheduleQuote(n, false); } else if (!e.isIntersecting) qVis[n] = false; }), {threshold:0.4});
+  $$("[data-quote]").forEach(el => io.observe(el));
 }
 
 // ----- Slogan: tippt sich selbst, bleibt kurz stehen, beginnt von vorn -----
@@ -674,5 +679,5 @@ const NAMES = {de:"Deutsch", en:"English", tr:"Türkçe", ar:"العربية", r
 const sel = $("#lang-select");
 ["de","en","tr","ar","ru","pl","uk"].forEach(c => sel.add(new Option(NAMES[c], c)));
 sel.onchange = () => { lang = sel.value; sset("lang", lang); render(); renderQuote(); typeTagline(); };
-render(); renderQuote(); typeTagline(); showCookie(); initCarousels(); route(); loadSlides();
+render(); renderQuote(); typeTagline(); showCookie(); initCarousels(); spy(); watchQuotes(); loadSlides();
 loadMenu().then(render);

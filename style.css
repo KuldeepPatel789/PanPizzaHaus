@@ -1,6 +1,6 @@
 :root{--bg:#3a0710;--bg2:#470a15;--card:#5a0e1d;--red:#e5173a;--hot:#c8102e;--line:#ffffff24;--muted:#ffffffb8}
 *{box-sizing:border-box}
-html{scroll-behavior:auto}
+html{scroll-behavior:auto;scroll-padding-top:96px}
 body{margin:0;font-family:"Bricolage Grotesque","Noto Sans Arabic",system-ui,sans-serif;color:#fff;background:var(--bg);line-height:1.55}
 a{color:inherit}
 :focus-visible{outline:3px solid #fff;outline-offset:2px}
@@ -84,7 +84,7 @@ footer span{margin-inline-end:auto}
   .card{grid-template-columns:110px 1fr}
   .card img{width:110px}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;scroll-padding-top:96px}}
 
 /* ---- v4 additions ---- */
 .lang-select{background:#6d0819;color:#fff;border:1px solid #fff8;border-radius:10px;padding:7px 12px;font:inherit;font-size:.9rem;cursor:pointer}
@@ -203,8 +203,6 @@ html[dir="rtl"] .fx-write{animation-name:wipeRtl}
 .qt em.fix s{position:relative;display:inline-block;text-decoration:none;opacity:.75}
 .qt em.fix s::after{content:"";position:absolute;left:-3%;top:54%;height:.11em;width:0;background:#ff3b5c;border-radius:3px;animation:strikeLine .45s 1.1s ease-out forwards}
 @keyframes strikeLine{to{width:106%}}
-.qt em.fix b{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;max-width:0;font-weight:inherit;color:#ffd76a;text-shadow:0 0 16px #e5173a99;animation:writeIn .9s steps(12) 1.9s forwards}
-@keyframes writeIn{to{max-width:calc(var(--n) * 1.2ch)}}
 .qt em.erase{color:#ffd76a;text-shadow:0 0 16px #e5173a99}
 .qt em.erase::after{content:"";display:inline-block;width:.08em;height:.9em;margin-inline-start:.06em;background:currentColor;vertical-align:-.1em;animation:blink 1s steps(2) infinite}
 .qt em.erase.done::after{display:none}
@@ -344,3 +342,17 @@ html[dir="rtl"] .hero-shade{transform:scaleX(-1)}
   .hero-shade{background:linear-gradient(180deg,#3a071055,#3a0710d9 48%,#3a0710f5)}
   .insight{padding:34px 14px}
 }
+
+/* ---- v10 ---- */
+html{scroll-padding-top:96px}
+.qt em.fix b{display:inline-block;white-space:nowrap;font-weight:inherit;color:#ffd76a;text-shadow:0 0 16px #e5173a99;clip-path:inset(-10% 100% -10% 0);animation:writeIn .9s steps(14) 1.9s forwards}
+html[dir="rtl"] .qt em.fix b{clip-path:inset(-10% 0 -10% 100%);animation-name:writeInRtl}
+@keyframes writeIn{to{clip-path:inset(-10% -4% -10% 0)}}
+@keyframes writeInRtl{to{clip-path:inset(-10% 0 -10% -4%)}}
+@media(prefers-reduced-motion:reduce){.qt em.fix b{animation:none!important;clip-path:none!important}}
+/* hero video melts into the background on all sides */
+.hero-media{-webkit-mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 74%,transparent 100%);mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 74%,transparent 100%)}
+.hero{background:radial-gradient(ellipse at 72% 50%,#7a0c1f 0%,#3a0710 62%)}
+@media(max-width:760px){.hero-media{-webkit-mask-image:none;mask-image:none}}
+
+.fx-type .u{opacity:1;animation:none;display:inline}
