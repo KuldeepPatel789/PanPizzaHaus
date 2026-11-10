@@ -12,7 +12,7 @@ pizza;Alaska;;;;;;;fish;6,90;9,80;16,20;;Tomatensauce, Käse, Thunfisch, Zwiebel
 pizza;Hawaii;;;;;;;;6,90;9,80;16,20;;Tomatensauce, Käse, Schinken, Ananas;a,c,f,g,k,5,7,8;;;
 pizza;Caribbean;;;;;;;chicken;7,30;10,50;17,60;;Tomatensauce, Käse, Champignons, Hähnchen, Ananas;a,13,1;;;
 pizza;Nevada;;;;;;;veggie;7,30;10,50;17,60;;Tomatensauce, Käse, Champignons, Zwiebeln, Paprika, Cherry-Tomaten;a,g;;;
-pizza;R;;;;;;;beef;7,80;11,10;18,90;;Tomatensauce, Käse, Salami, Zwiebeln, Bacon;a,c,f,g,k,5,7,8;;;
+pizza;Rustica;;;;;;;beef;7,80;11,10;18,90;;Tomatensauce, Käse, Salami, Zwiebeln, Bacon;a,c,f,g,k,5,7,8;;;
 pizza;Farmer;;;;;;;chicken,beef;7,80;11,10;18,90;;Tomatensauce, Käse, Peperoni-Wurst, Mais, Hähnchen;a,c,f,g,k,7,8,13;;;
 pizza;Miami;;;;;;;fish;7,80;11,10;18,90;;Tomatensauce, Käse, Thunfisch, Shrimps, Spinat;a,b,g,h;;;
 pizza;Pan Spezial;;;;;;;beef;7,80;11,10;18,90;;Tomatensauce, Käse, Pastirma, Champignons, Zwiebeln, Paprika;a,g,4,7,8;;;
@@ -27,8 +27,6 @@ vorspeisen;Knoblauchbrot Bacon Cheese;Garlic bread with bacon & cheese;Baconlı 
 vorspeisen;Potatoes Wedges;Potato wedges;Patates dilimleri;شرائح بطاطس;Картофельные дольки;Cząstki ziemniaczane;Картопляні часточки;veggie;;;;4,40;Kartoffeln;a,c,7;;;
 vorspeisen;Chilli Cheese Nuggets;;;;;;;veggie,spicy;;;;4,40;Käse, Chili, Panade;a,g,5,9;6 Stück;;
 vorspeisen;Mozzarella Sticks;;;;;;;veggie;;;;5,00;Mozzarella, Panade;a,g,5,9;6 Stück;;
-vorspeisen;Dips & Dressings;Dips & dressings;Soslar ve dressingler;صلصات وتتبيلات;Соусы и дрессинги;Dipy i dressingi;Соуси та дресинги;veggie;;;;0,50;;a,c,3,7,9;;;Ketchup|Mayo|Knoblauchsoße|Scharfe Soße
-vorspeisen;Dressings;Dressings;Dressingler;تتبيلات;Дрессинги;Dressingi;Дресинги;veggie;;;;0,70;;c,g,j,k;;;Joghurt|French|Balsamico|Honig-Senf|Essig-Öl
 pasta;Pasta nach Wahl;Pasta of your choice;Seçtiğin makarna;باستا حسب اختيارك;Паста на выбор;Makaron do wyboru;Паста на вибір;veggie;;;;6,70;;g;;;Tortellini|Penne|Spaghetti|Tagliatelle / Tomatensauce|Sahnesauce
 pasta;Tortellini Tuna;;;;;;;fish;;;;8,00;Nudeln, Thunfisch, Sahnesauce;a,f,g,j,k,l;;;
 pasta;Brokkoli Chicken;;;;;;;chicken;;;;8,70;Nudeln, Hähnchen, Brokkoli, Sahnesauce;a,f,g,j,k,l,7,8;;;
@@ -80,10 +78,26 @@ extra;Shrimps;;;;;;;meat;0,80;1,20;2,40;1,20;;;;;
 extra;Sucuk;;;;;;;meat;0,80;1,20;2,40;1,20;;;;;
 extra;Thunfisch;;;;;;;meat;0,80;1,20;2,40;1,20;;;;;
 kaeserand;Käserand;Cheese crust;Peynir kenarı;حافة الجبن;Сырный бортик;Serowy brzeg;Сирний бортик;;;0,60;1,20;;;;;;
-sosse;Knoblauchsoße;Garlic sauce;Sarımsak sosu;صلصة الثوم;Чесночный соус;Sos czosnkowy;Часниковий соус;gratis;;;;0,50;;;;;
+sosse;Knoblauchsoße;Garlic sauce;Sarımsak sosu;صلصة الثوم;Чесночный соус;Sos czosnkowy;Часниковий соус;gratis;;;;0,50;;c,g;;;
 sosse;Tomate-Chili-Soße;Tomato-chilli sauce;Domates-acı sosu;صلصة الطماطم والشطة;Томатно-чили соус;Sos pomidorowo-chili;Томатно-чилі соус;gratis;;;;0,50;;;;;
 sosse;Ketchup;Ketchup;Ketçap;كاتشب;Кетчуп;Ketchup;Кетчуп;;;;;0,50;;;;;
-sosse;Mayo;Mayo;Mayonez;مايونيز;Майонез;Majonez;Майонез;;;;;0,50;;;;;
-sosse;BBQ-Soße;BBQ sauce;BBQ sos;صلصة الشواء;Соус BBQ;Sos BBQ;Соус BBQ;;;;;0,50;;;;;
-sosse;Joghurt-Soße;Yoghurt sauce;Yoğurt sosu;صلصة الزبادي;Йогуртовый соус;Sos jogurtowy;Йогуртовий соус;;;;;0,70;;;;;
+sosse;Mayo;Mayo;Mayonez;مايونيز;Майонез;Majonez;Майонез;;;;;0,50;;c;;;
+sosse;BBQ-Soße;BBQ sauce;BBQ sos;صلصة الشواء;Соус BBQ;Sos BBQ;Соус BBQ;;;;;0,50;;k;;;
+sosse;Joghurt-Soße;Yoghurt sauce;Yoğurt sosu;صلصة الزبادي;Йогуртовый соус;Sos jogurtowy;Йогуртовий соус;;;;;0,70;;g;;;
 einstellung;Gratis-Soßen pro Pizza;;;;;;;;;;;2;;;;;
+pommes;Pommes;French fries;Patates kızartması;بطاطس مقلية;Картофель фри;Frytki;Картопля фрі;veggie;2,90;3,70;4,50;;Kartoffeln;;;;
+pommes;Käse-Pommes;Cheese fries;Peynirli patates;بطاطس بالجبن;Картофель фри с сыром;Frytki z serem;Картопля фрі з сиром;veggie;3,70;4,60;5,60;;Kartoffeln, Käsesauce;g;;;
+pommes;Chili Cheese Fries;Chilli cheese fries;Acılı peynirli patates;بطاطس بالجبن والشطة;Картофель фри чили-чиз;Frytki chili cheese;Картопля фрі чилі-чіз;veggie,spicy;4,20;5,20;6,20;;Kartoffeln, Käsesauce, Chili, Jalapeños;g;;;
+pommes;Pommes Bacon Cheese;Fries with bacon & cheese;Baconlı peynirli patates;بطاطس بالبيكون والجبن;Картофель фри с беконом и сыром;Frytki z boczkiem i serem;Картопля фрі з беконом і сиром;beef;4,40;5,40;6,40;;Kartoffeln, Käsesauce, Rinderbacon;g;;;
+extra_pommes;Käsesauce;;;;;;;;0,80;1,00;1,20;;;;;;
+extra_pommes;Chillisoße;;;;;;;;0,50;0,60;0,70;;;;;;
+extra_pommes;Oliven;;;;;;;;0,60;0,80;1,00;;;;;;
+extra_pommes;Jalapeños;;;;;;;;0,60;0,80;1,00;;;;;;
+extra_pommes;Rinderbacon;;;;;;;;0,80;1,00;1,40;;;;;;
+extra_pommes;Feta;;;;;;;;0,80;1,00;1,20;;;;;;
+sosse;Scharfe Soße;Hot sauce;Acı sos;صلصة حارة;Острый соус;Ostry sos;Гострий соус;;;;;0,50;;;;;
+sosse;French Dressing;French dressing;French sos;صلصة فرنش;Дрессинг French;Dressing French;Дресинг French;dressing;;;;0,70;;c,k;;;
+sosse;Balsamico Dressing;Balsamic dressing;Balzamik sos;تتبيلة البلسميك;Бальзамический дрессинг;Dressing balsamiczny;Бальзамічний дресинг;dressing;;;;0,70;;k,n;;;
+sosse;Honig-Senf Dressing;Honey mustard dressing;Bal-hardal sosu;تتبيلة العسل والخردل;Медово-горчичный дрессинг;Dressing miodowo-musztardowy;Медово-гірчичний дресинг;dressing;;;;0,70;;k;;;
+sosse;Essig-Öl Dressing;Vinaigrette;Sirke-yağ sosu;تتبيلة الخل والزيت;Масляно-уксусный дрессинг;Winegret;Оливково-оцтовий дресинг;dressing;;;;0,70;;k,n;;;
+sosse;Joghurt-Dressing;Yoghurt dressing;Yoğurt dressing;تتبيلة الزبادي;Йогуртовый дрессинг;Dressing jogurtowy;Йогуртовий дресинг;dressing;;;;0,70;;g;;;

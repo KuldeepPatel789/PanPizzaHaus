@@ -1,0 +1,76 @@
+Foto-Namen für images/photos/ (alles klein, Endung .jpg)
+Für jedes Gericht gilt der deutsche ODER der englische Name:
+
+Margherita                                                   -> margherita.jpg
+Champignons                                                  -> champignons.jpg  oder  mushrooms.jpg
+Salami                                                       -> salami.jpg
+Spicy Chicken                                                -> spicy-chicken.jpg
+Sucuk                                                        -> sucuk.jpg
+Thunfisch                                                    -> thunfisch.jpg  oder  tuna.jpg
+Pastirma                                                     -> pastirma.jpg
+New York                                                     -> new-york.jpg
+Veggie                                                       -> veggie.jpg
+Alaska                                                       -> alaska.jpg
+Hawaii                                                       -> hawaii.jpg
+Caribbean                                                    -> caribbean.jpg
+Nevada                                                       -> nevada.jpg
+Rustica                                                      -> rustica.jpg
+Farmer                                                       -> farmer.jpg
+Miami                                                        -> miami.jpg
+Pan Spezial                                                  -> pan-spezial.jpg
+Boston                                                       -> boston.jpg
+Hot Chilli                                                   -> hot-chilli.jpg
+Western                                                      -> western.jpg
+Texas                                                        -> texas.jpg
+Kentucky                                                     -> kentucky.jpg
+Knoblauchbrot Käse                                           -> knoblauchbrot-kaese.jpg  oder  garlic-bread-with-cheese.jpg
+Knoblauchbrot Tomate Mozzarella                              -> knoblauchbrot-tomate-mozzarella.jpg  oder  garlic-bread-with-tomato-mozzarella.jpg
+Knoblauchbrot Bacon Cheese                                   -> knoblauchbrot-bacon-cheese.jpg  oder  garlic-bread-with-bacon-cheese.jpg
+Potatoes Wedges                                              -> potatoes-wedges.jpg  oder  potato-wedges.jpg
+Chilli Cheese Nuggets                                        -> chilli-cheese-nuggets.jpg
+Mozzarella Sticks                                            -> mozzarella-sticks.jpg
+Pasta nach Wahl                                              -> pasta-nach-wahl.jpg  oder  pasta-of-your-choice.jpg
+Tortellini Tuna                                              -> tortellini-tuna.jpg
+Brokkoli Chicken                                             -> brokkoli-chicken.jpg
+Penne Veggie                                                 -> penne-veggie.jpg
+Cherry Bacon                                                 -> cherry-bacon.jpg
+Gemischter Salat                                             -> gemischter-salat.jpg  oder  mixed-salad.jpg
+Greek Salat                                                  -> greek-salat.jpg  oder  greek-salad.jpg
+Chicken Salat                                                -> chicken-salat.jpg  oder  chicken-salad.jpg
+Thunfisch Salat                                              -> thunfisch-salat.jpg  oder  tuna-salad.jpg
+Hot Cookie                                                   -> hot-cookie.jpg
+Pan Sticks                                                   -> pan-sticks.jpg
+Softdrinks                                                   -> softdrinks.jpg  oder  soft-drinks.jpg
+Eistee                                                       -> eistee.jpg  oder  iced-tea.jpg
+Wasser (Vio)                                                 -> wasser-vio.jpg  oder  water-vio.jpg
+Alkoholfreies Bier                                           -> alkoholfreies-bier.jpg  oder  non-alcoholic-beer.jpg
+Kölsch vom Fass                                              -> koelsch-vom-fass.jpg  oder  koelsch-draught.jpg
+Pils (Flasche)                                               -> pils-flasche.jpg  oder  pilsner-bottle.jpg
+Weizenbier                                                   -> weizenbier.jpg  oder  wheat-beer.jpg
+Radler                                                       -> radler.jpg  oder  shandy-radler.jpg
+Weißwein, trocken                                            -> weisswein-trocken.jpg  oder  white-wine-dry.jpg
+Rotwein, trocken                                             -> rotwein-trocken.jpg  oder  red-wine-dry.jpg
+Prosecco                                                     -> prosecco.jpg
+Aperol Spritz                                                -> aperol-spritz.jpg
+Limoncello Spritz                                            -> limoncello-spritz.jpg
+Hugo                                                         -> hugo.jpg
+Gin Tonic                                                    -> gin-tonic.jpg
+Limoncello                                                   -> limoncello.jpg
+Knoblauchsoße                                                -> knoblauchsosse.jpg  oder  garlic-sauce.jpg
+Tomate-Chili-Soße                                            -> tomate-chili-sosse.jpg  oder  tomato-chilli-sauce.jpg
+Ketchup                                                      -> ketchup.jpg
+Mayo                                                         -> mayo.jpg
+BBQ-Soße                                                     -> bbq-sosse.jpg  oder  bbq-sauce.jpg
+Joghurt-Soße                                                 -> joghurt-sosse.jpg  oder  yoghurt-sauce.jpg
+Pommes                                                       -> pommes.jpg  oder  french-fries.jpg
+Käse-Pommes                                                  -> kaese-pommes.jpg  oder  cheese-fries.jpg
+Chili Cheese Fries                                           -> chili-cheese-fries.jpg  oder  chilli-cheese-fries.jpg
+Pommes Bacon Cheese                                          -> pommes-bacon-cheese.jpg  oder  fries-with-bacon-cheese.jpg
+Scharfe Soße                                                 -> scharfe-sosse.jpg  oder  hot-sauce.jpg
+French Dressing                                              -> french-dressing.jpg
+Balsamico Dressing                                           -> balsamico-dressing.jpg  oder  balsamic-dressing.jpg
+Honig-Senf Dressing                                          -> honig-senf-dressing.jpg  oder  honey-mustard-dressing.jpg
+Essig-Öl Dressing                                            -> essig-oel-dressing.jpg  oder  vinaigrette.jpg
+Joghurt-Dressing                                             -> joghurt-dressing.jpg  oder  yoghurt-dressing.jpg
+
+Einblicke: einblick-1.jpg, einblick-2.jpg, einblick-3.jpg ... (ohne Lücken, beliebig viele)

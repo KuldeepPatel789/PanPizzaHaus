@@ -87,7 +87,7 @@ Object.assign(T, {
   p_value:["Die Preise sind fair für das, was man bekommt.","Fiyatlar aldığın şeye göre adil.","The prices are fair for what you get.","الأسعار عادلة مقابل ما تحصل عليه.","Цены справедливые за такое качество.","Ceny są uczciwe jak na to, co się dostaje.","Ціни чесні за таку якість."],
   i1:["Wir waren zum ersten Mal hier und sind begeistert.","İlk kez geldik ve çok memnun kaldık.","First time here and we’re impressed.","زرنا المكان لأول مرة وأعجبنا كثيرًا.","Были здесь впервые и остались довольны.","Byliśmy tu pierwszy raz i jesteśmy zachwyceni.","Були тут уперше й залишились у захваті."],
   i2:["Kleiner Tipp für alle Pizzafans:","Pizza severler için küçük bir ipucu:","A quick tip for pizza lovers:","نصيحة سريعة لمحبي البيتزا:","Небольшой совет для любителей пиццы:","Mała wskazówka dla fanów pizzy:","Невелика порада для любителів піци:"],
-  i3:["Schöner Besuch bei Pan Pizza Hause!","Pan Pizza Hause’ta güzel bir ziyaretti!","Lovely visit to Pan Pizza Hause!","زيارة جميلة إلى Pan Pizza Hause!","Отличный визит в Pan Pizza Hause!","Świetna wizyta w Pan Pizza Hause!","Чудовий візит до Pan Pizza Hause!"],
+  i3:["Schöner Besuch bei Pan Pizza Haus!","Pan Pizza Haus’ta güzel bir ziyaretti!","Lovely visit to Pan Pizza Haus!","زيارة جميلة إلى Pan Pizza Haus!","Отличный визит в Pan Pizza Haus!","Świetna wizyta w Pan Pizza Haus!","Чудовий візит до Pan Pizza Haus!"],
   o1:["Wir kommen gern wieder.","Tekrar geleceğiz.","We’ll gladly come back.","سنعود بكل سرور.","С радостью вернёмся.","Chętnie wrócimy.","Із задоволенням повернемось."],
   o2:["Absolute Empfehlung!","Kesinlikle tavsiye ederim!","Highly recommended!","أنصح به بشدة!","Очень рекомендую!","Gorąco polecam!","Дуже рекомендую!"],
   o3:["Danke an das ganze Team.","Tüm ekibe teşekkürler.","Thanks to the whole team.","شكرًا لكل الفريق.","Спасибо всей команде.","Dziękujemy całemu zespołowi.","Дякуємо всій команді."]
@@ -107,8 +107,14 @@ const ING_NEW = {
   "Knoblauchsoße":["Knoblauchsoße","Sarımsak sosu","Garlic sauce","صلصة الثوم","Чесночный соус","Sos czosnkowy","Часниковий соус"],"Scharfe Soße":["Scharfe Soße","Acı sos","Hot sauce","صلصة حارة","Острый соус","Ostry sos","Гострий соус"],
   "Tortellini":["Tortellini","Tortellini","Tortellini","تورتيليني","Тортеллини","Tortellini","Тортелліні"],"Spaghetti":["Spaghetti","Spagetti","Spaghetti","سباغيتي","Спагетти","Spaghetti","Спагеті"],"Tagliatelle":["Tagliatelle","Tagliatelle","Tagliatelle","تالياتيلي","Тальятелле","Tagliatelle","Тальятелле"],
   "Zitrone":["Zitrone","Limon","Lemon","ليمون","Лимон","Cytryna","Лимон"],"Pfirsich":["Pfirsich","Şeftali","Peach","خوخ","Персик","Brzoskwinia","Персик"],"Still":["Still","Sade","Still","عادي","Без газа","Niegazowana","Без газу"],"Medium":["Medium","Hafif gazlı","Medium","خفيف الغاز","Слабогазированная","Średnio gazowana","Слабогазована"],
-  "Joghurt":["Joghurt","Yoğurt","Yoghurt","زبادي","Йогурт","Jogurt","Йогурт"],"Balsamico":["Balsamico","Balzamik","Balsamic","بلسميك","Бальзамик","Balsamico","Бальзамік"],"Honig-Senf":["Honig-Senf","Bal-hardal","Honey mustard","عسل وخردل","Медово-горчичный","Miodowo-musztardowy","Медово-гірчичний"],"Essig-Öl":["Essig-Öl","Sirke-yağ","Vinaigrette","خل وزيت","Уксус-масло","Ocet-olej","Оцет-олія"]
+  "Joghurt":["Joghurt","Yoğurt","Yoghurt","زبادي","Йогурт","Jogurt","Йогурт"],"Balsamico":["Balsamico","Balzamik","Balsamic","بلسميك","Бальзамик","Balsamico","Бальзамік"],"Honig-Senf":["Honig-Senf","Bal-hardal","Honey mustard","عسل وخردل","Медово-горчичный","Miodowo-musztardowy","Медово-гірчичний"],"Essig-Öl":["Essig-Öl","Sirke-yağ","Vinaigrette","خل وزيت","Уксус-масло","Ocet-olej","Оцет-олія"],
+  "Käsesauce":["Käsesauce","Peynir sosu","Cheese sauce","صلصة الجبن","Сырный соус","Sos serowy","Сирний соус"]
 };
+Object.assign(T, {
+  nav_reviews:["Bewertungen","Yorumlar","Reviews","التقييمات","Отзывы","Opinie","Відгуки"],
+  call:["Anrufen","Ara","Call","اتصل","Позвонить","Zadzwoń","Подзвонити"],
+  route:["Route","Yol tarifi","Directions","الاتجاهات","Маршрут","Dojazd","Маршрут"]
+});
 Object.assign(T, {opt_choose:["Bitte wählen","Lütfen seç","Please choose","الرجاء الاختيار","Выберите","Wybierz","Оберіть"]});
 
 const CATS = {
@@ -116,8 +122,10 @@ const CATS = {
   pizza:["Pizza","Pizza","Pizza","بيتزا","Пицца","Pizza","Піца"],
   pasta:["Pasta","Makarna","Pasta","باستا","Паста","Makaron","Паста"],
   salate:["Salate","Salatalar","Salads","سلطات","Салаты","Sałatki","Салати"],
+  pommes:["Pommes","Patates","Fries","بطاطس مقلية","Картофель фри","Frytki","Картопля фрі"],
   desserts:["Desserts","Tatlılar","Desserts","حلويات","Десерты","Desery","Десерти"],
-  getraenke:["Getränke","İçecekler","Drinks","مشروبات","Напитки","Napoje","Напої"]
+  getraenke:["Getränke","İçecekler","Drinks","مشروبات","Напитки","Napoje","Напої"],
+  sossen:["Soßen & Dressings","Soslar ve dressingler","Sauces & dressings","الصلصات والتتبيلات","Соусы и дрессинги","Sosy i dressingi","Соуси та дресинги"]
 };
 const TAGS = {
   chicken:["Chicken","Tavuk","Chicken","دجاج","Курица","Kurczak","Курка"],
@@ -207,7 +215,7 @@ const OPENING = {0:["12:00","22:00"],1:["11:00","22:00"],2:["11:00","22:00"],3:[
 
 // Nur ein Standort (Platzhalter)
 const LOCATIONS = [
-  {name:"Pan Pizza Hause",street:"Musterstraße 1",city:"12345 Musterstadt",phone:"01234 567890",mail:"info@example.com"}
+  {name:"Pan Pizza Haus",street:"Musterstraße 1",city:"12345 Musterstadt",phone:"01234 567890",mail:"info@example.com"}
 ];
 
 // BEISPIEL-Bewertungen (erfunden). Vor dem echten Start durch echte Google-Bewertungen ersetzen!
@@ -256,7 +264,14 @@ const QUOTES4 = [
   ["Bei uns zählt [[jede Hand]] – und jedes Lächeln.","Bizde [[her el]] değerlidir, her gülümseme de.","Here, [[every hand]] counts, and every smile.","عندنا [[كل يد]] لها قيمة، وكل ابتسامة أيضًا.","У нас важна [[каждая пара рук]] и каждая улыбка.","U nas liczy się [[każda para rąk]] i każdy uśmiech.","У нас важить [[кожна пара рук]] і кожна усмішка."],
   ["Frisch aus dem Ofen, [[direkt ins Herz]].","Fırından çıkar, [[doğruca kalbe]] gider.","Fresh from the oven, [[straight to the heart]].","طازجة من الفرن، [[مباشرة إلى القلب]].","Свежая из печи — [[прямо в сердце]].","Prosto z pieca, [[prosto do serca]].","Свіжа з печі — [[просто в серце]]."]
 ];
-const QSETS = QUOTES.map((q, i) => [q, QUOTES2[i], QUOTES3[i], QUOTES4[i]]);
+const QUOTES5 = [
+  ["Der beste Teil? Immer [[das nächste Stück]].","En güzel kısmı mı? Hep [[bir sonraki dilim]].","The best part? Always [[the next slice]].","أجمل جزء؟ دائمًا [[الشريحة التالية]].","Лучшая часть? Всегда [[следующий кусочек]].","Najlepsza część? Zawsze [[następny kawałek]].","Найкраща частина? Завжди [[наступний шматочок]]."],
+  ["Eine Pfanne, eine Flamme, ein bisschen [[Zauber]].","Bir tava, bir ateş, biraz [[sihir]].","A pan, a flame, a little [[magic]].","مقلاة، لهب، وقليل من [[السحر]].","Сковорода, огонь и немного [[магии]].","Patelnia, ogień i odrobina [[magii]].","Пательня, вогонь і трохи [[магії]]."],
+  ["Manche Erinnerungen schmecken nach [[geschmolzenem Käse]].","Bazı anılar [[eriyen peynir]] gibi tat verir.","Some memories taste like [[melted cheese]].","بعض الذكريات طعمها [[جبن ذائب]].","Некоторые воспоминания на вкус как [[расплавленный сыр]].","Niektóre wspomnienia smakują jak [[roztopiony ser]].","Деякі спогади на смак як [[розплавлений сир]]."],
+  ["Komm zu uns und back [[das Lieblingsessen von morgen]].","Bize katıl, [[yarının favorisini]] pişir.","Join us and bake [[tomorrow’s favourite]].","انضم إلينا واخبز [[المفضّل الجديد]].","Присоединяйся и пеки [[любимое блюдо завтрашнего дня]].","Dołącz i piecz [[ulubione danie jutra]].","Приєднуйся та пеки [[улюблену страву завтрашнього дня]]."],
+  ["Dein [[Wohlfühlessen]] ruft.","[[Rahatlatan yemeğin]] seni çağırıyor.","Your [[comfort food]] is calling.","[[طعامك المريح]] ينادي.","Твоя [[любимая еда]] зовёт.","Twoje [[comfort food]] już woła.","Твоя [[улюблена їжа]] кличе."]
+];
+const QSETS = QUOTES.map((q, i) => [q, QUOTES2[i], QUOTES3[i], QUOTES4[i], QUOTES5[i]]);
 
 // Zitate mit Korrektur-Effekt: {{falsch|richtig}} = Wort wird durchgestrichen, das bessere geschrieben;
 // ((falsch|richtig)) = Wort wird getippt, gelöscht, dann das bessere getippt. Immer von „gut" zu „besser/lustiger".
@@ -271,16 +286,16 @@ QSETS[4][3] = ["Frisch aus dem Ofen, direkt {{auf den Tisch|ins Herz}}.","Fırı
 // hot = Hitze-Flimmern, zoom, wave = Buchstabenwelle, write = Handschrift-Wisch, slideL/slideR, drop = Buchstaben fallen,
 // bounce, blur, fix = Korrektur-Effekt (siehe oben)
 const QFX = [
-  ["rise","type","fix","press"],
-  ["hot","zoom","fix","wave"],
-  ["write","slideL","fix","slideR"],
-  ["drop","type","fix","zoom"],
-  ["fix","bounce","blur","fix"]
+  ["rise","type","fix","press","slideR"],
+  ["hot","zoom","fix","wave","flip"],
+  ["write","slideL","fix","slideR","drop"],
+  ["drop","type","fix","zoom","bounce"],
+  ["fix","bounce","blur","fix","wave"]
 ];
 
 
 // Emoji hinter dem hervorgehobenen Wort (je Platz 4 Zitate)
-const QEMO = [["","","🧀",""],["🔥","","",""],["","","",""],["","","",""],["","","","❤️"]];
+const QEMO = [["","","🧀","",""],["🔥","","","",""],["","","","",""],["","","","",""],["","","","❤️",""]];
 
 // Slogans mit Schreibmaschinen-Effekt über den Buttons
 const TAGLINES = [
@@ -311,11 +326,13 @@ const eur = n => n.toLocaleString(LOC[lang], {style:"currency", currency:"EUR"})
 const ING_DE = {}; Object.values(ING).forEach(a => ING_DE[a[0]] = a); Object.assign(ING_DE, ING_NEW);
 const ingName = x => (ING_DE[x] || [])[L()] || x;
 const slug = s => s.toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
-const FALLBACK = {vorspeisen:"garlic-bread", pizza:"pizza-pepperoni", pasta:"penne", salate:"salad", desserts:"brownie", getraenke:"cola"};
-const HAS_OPT = c => ["pizza","pasta","salate"].includes(c);
+const FALLBACK = {vorspeisen:"garlic-bread", pizza:"pizza-pepperoni", pasta:"penne", salate:"salad", pommes:"fries", desserts:"brownie", getraenke:"cola", sossen:"sauce"};
+const HAS_OPT = c => ["pizza","pasta","salate","pommes"].includes(c);
+const extList = it => it.c === "pommes" ? EXTRAS_POM : EXTRAS, hasOpts = it => HAS_OPT(it.c) && extList(it).length > 0;
+const extPrice = (it, e, k) => (it.c === "pizza" || it.c === "pommes") ? e.p[k] : (e.p[3] != null ? e.p[3] : e.p[1]);
 
 /* ===================== Speisekarte aus speisekarte.csv ===================== */
-let MENU = [], EXTRAS = [], SAUCES = [], KAESE = null, FREE = 2, menuError = false;
+let MENU = [], EXTRAS = [], EXTRAS_POM = [], SAUCES = [], KAESE = null, FREE = 2, menuError = false;
 const num = v => { const n = parseFloat(String(v || "").replace(",", ".")); return isNaN(n) ? null : n; };
 function parseCSV(text) {
   text = text.replace(/^\uFEFF/, "");
@@ -338,13 +355,18 @@ async function loadMenu() {
     const res = await fetch("speisekarte.csv?v=" + Date.now());
     if (!res.ok) throw new Error("csv");
     const rows = parseCSV(await res.text());
-    MENU = []; EXTRAS = []; SAUCES = []; KAESE = null;
+    MENU = []; EXTRAS = []; EXTRAS_POM = []; SAUCES = []; KAESE = null;
     rows.forEach(r => {
-      const f = v => v || r.EN || r.Name, names = [r.Name, f(r.TR), r.EN || r.Name, f(r.AR), f(r.RU), f(r.PL), f(r.UK)];
+      const f = v => v || r.EN || r.Name, dict = !r.EN && ING_DE[r.Name], names = dict ? dict : [r.Name, f(r.TR), r.EN || r.Name, f(r.AR), f(r.RU), f(r.PL), f(r.UK)];
       const k = (r.Kategorie || "").toLowerCase(), n3 = [num(r.Klein), num(r.Mittel), num(r["Groß"])], single = num(r.Preis);
       if (k === "extra") EXTRAS.push({names, p:[...n3, single]});
       else if (k === "kaeserand") KAESE = {names, p:n3};
-      else if (k === "sosse") SAUCES.push({names, price:single || 0, free:/gratis/i.test(r.Tags)});
+      else if (k === "extra_pommes") EXTRAS_POM.push({names, p:[...n3, single]});
+      else if (k === "sosse") {
+        const dress = /dressing/i.test(r.Tags), codes = (r.Allergene || "").split(",").map(x => x.trim()).filter(Boolean);
+        if (!dress) SAUCES.push({names, price:single || 0, free:/gratis/i.test(r.Tags)});
+        MENU.push({c:"sossen", names, t:[], p:[single], sized:false, ing:[], al:codes.filter(x => /^[a-z]$/i.test(x)).map(x => x.toLowerCase()), ad:codes.filter(x => /^\d+$/.test(x)), vol:"", g:r.Bild || "", choices:[]});
+      }
       else if (k === "einstellung") { if (/so(ss|ß)e/i.test(r.Name)) FREE = single == null ? 2 : single; }
       else if (k) {
         const sized = n3.some(x => x != null), codes = (r.Allergene || "").split(",").map(x => x.trim()).filter(Boolean);
@@ -362,8 +384,9 @@ async function loadMenu() {
 /* ===================== Rendering ===================== */
 const ADDLEG = "Zusatzstoffe: " + Object.entries(ADD).map(([n, t]) => n + " = " + t).join(", ") + ".";
 function hoursHTML() {
-  const rows = [1,2,3,4,5,6,0].map(d => { const h = OPENING[d], name = new Date(2024, 0, 7 + d).toLocaleDateString(LOC[lang], {weekday:"long"});
-    return `<tr><td>${name}</td><td>${h ? h[0] + " – " + h[1] : "—"}</td></tr>`; }).join("");
+  const order = [1,2,3,4,5,6,0], day = d => new Date(2024, 0, 7 + d).toLocaleDateString(LOC[lang], {weekday:"short"}), groups = [];
+  order.forEach(d => { const h = OPENING[d] ? OPENING[d].join(" – ") : null, g = groups[groups.length - 1]; if (g && g.h === h) g.days.push(d); else groups.push({h, days:[d]}); });
+  const rows = groups.map(g => `<tr><td>${g.days.length > 1 ? day(g.days[0]) + " – " + day(g.days[g.days.length - 1]) : day(g.days[0])}</td><td>${g.h || "—"}</td></tr>`).join("");
   const now = new Date(), h = OPENING[now.getDay()], mins = now.getHours() * 60 + now.getMinutes(), toM = s => +s.slice(0, 2) * 60 + +s.slice(3);
   const open = !!h && mins >= toM(h[0]) && mins < toM(h[1]);
   return `<h4>${tr("open_h")}</h4><p class="open ${open ? "on" : "off"}">● ${tr(open ? "open_now" : "open_closed")}</p><table class="hours">${rows}</table>`;
@@ -386,6 +409,7 @@ function cardHTML(i, mi) {
 function renderPage() {
   document.documentElement.lang = lang; document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   $$("[data-i18n]").forEach(el => el.textContent = tr(el.dataset.i18n));
+  $$("[data-tl]").forEach(el => { el.textContent = TAGLINES[+el.dataset.tl][L()]; });
   $("#lang-select").value = lang; $("#yr").textContent = new Date().getFullYear();
   $("#deliv-links").innerHTML = `<a class="btn dl" href="#standorte">${tr("dinein")}</a>` +
     DELIVERY.filter(d => d.url).map(d => `<a class="btn solid dl" href="${d.url}" target="_blank" rel="noopener">${d.name}</a>`).join("");
@@ -393,35 +417,48 @@ function renderPage() {
   const cats = Object.keys(CATS).filter(k => MENU.some(i => i.c === k));
   if (cats.length && !cats.includes(cat)) cat = cats[0];
   $("#cats").innerHTML = "";
-  cats.forEach(k => { const b = document.createElement("button"); b.textContent = CATS[k][L()]; if (k === cat) b.setAttribute("aria-current", "true"); b.onclick = () => { cat = k; renderPage(); }; $("#cats").append(b); });
+  cats.forEach(k => { const b = document.createElement("button"); b.textContent = CATS[k][L()]; if (k === cat) b.setAttribute("aria-current", "true"); b.onclick = () => { cat = k; renderPage(); afterMenuChange(); }; $("#cats").append(b); });
 
   // Filter nur mit Merkmalen, die es in dieser Kategorie wirklich gibt
   const here = Object.keys(TAGS).filter(k => MENU.some(i => i.c === cat && i.t.includes(k)));
   if (tag !== "all" && !here.includes(tag)) tag = "all";
   $("#chips").innerHTML = "";
-  if (here.length) ["all", ...here].forEach(k => { const b = document.createElement("button"); b.textContent = k === "all" ? tr("all") : TAGS[k][L()]; b.setAttribute("aria-pressed", k === tag); b.onclick = () => { tag = k; renderPage(); }; $("#chips").append(b); });
+  if (here.length) ["all", ...here].forEach(k => { const b = document.createElement("button"); b.textContent = k === "all" ? tr("all") : TAGS[k][L()]; b.setAttribute("aria-pressed", k === tag); b.onclick = () => { tag = k; renderPage(); afterMenuChange(); }; $("#chips").append(b); });
 
   const items = MENU.map((i, mi) => [i, mi]).filter(([i]) => i.c === cat && (tag === "all" || i.t.includes(tag)));
   $("#cards").innerHTML = menuError ? '<p class="empty">speisekarte.csv konnte nicht geladen werden.</p>' : items.map(([i, mi]) => cardHTML(i, mi)).join("");
   $("#empty").hidden = items.length > 0 || menuError || !MENU.length;
   $("#menu-notes").innerHTML = esc(tr("menu_note")) + (cat === "getraenke" ? "<br>" + esc(tr("alc_note")) : "") + "<br><small><b>" + esc(tr("allergens")) + ":</b> " + esc(Object.entries(ALG).map(([k, v]) => k.toUpperCase() + " = " + v[L()]).join(", ")) + "</small><br><small>" + esc(ADDLEG) + "</small>";
 
-  $("#loc-list").innerHTML = LOCATIONS.map(l => `<div class="loc"><h3>${l.name}</h3><p>${l.street}<br>${l.city}</p><p><a href="tel:${l.phone.replace(/\s/g, "")}">${l.phone}</a><br><a href="mailto:${l.mail}">${l.mail}</a></p>${hoursHTML()}</div>`).join("");
+  $("#loc-list").innerHTML = LOCATIONS.map(l => `<div class="loc"><h3>${l.name}</h3><p>${l.street}<br>${l.city}</p><p><a href="tel:${l.phone.replace(/\s/g, "")}">${l.phone}</a><br><a href="mailto:${l.mail}">${l.mail}</a></p><p class="loc-actions"><a class="btn dl" href="tel:${l.phone.replace(/\s/g, "")}">${tr("call")}</a><a class="btn solid dl" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.name + ", " + l.street + ", " + l.city)}" target="_blank" rel="noopener">${tr("route")}</a></p>${hoursHTML()}</div>`).join("");
   const avg = REVIEWS.reduce((s, r) => s + r.s, 0) / REVIEWS.length;
   $("#avg").textContent = avg.toLocaleString("en-GB", {maximumFractionDigits:1});
   $("#rev-list").innerHTML = REVIEWS.map(r => `<figure class="rev"><div class="stars" aria-label="${r.s}/5">${"★".repeat(r.s)}${"☆".repeat(5 - r.s)}</div><blockquote>${r.t}</blockquote><figcaption>${r.n}<span class="lg">${r.l}</span> · Google</figcaption></figure>`).join("");
 }
-function render() { renderPage(); renderWish(); updateCars(); }
+function afterMenuChange() {
+  requestAnimationFrame(() => { setBars(); const t = $("#menu-top");
+    if (t && t.getBoundingClientRect().top < (parseFloat(getComputedStyle(t).scrollMarginTop) || 0) - 2) t.scrollIntoView({block:"start"}); });
+}
+let lastY = 0;
+window.addEventListener("scroll", () => {
+  const y = window.scrollY, top = $(".top");
+  if (window.innerWidth > 760 || y < 90) top.classList.remove("hide"); else if (y > lastY + 8) top.classList.add("hide"); else if (y < lastY - 8) top.classList.remove("hide");
+  lastY = y; setBars();
+}, {passive:true});
+function setBars() {
+  const r = document.documentElement.style;
+  r.setProperty("--hh", ($(".top").classList.contains("hide") ? 0 : $(".top").offsetHeight) + "px"); r.setProperty("--ph", ($("#chips").offsetHeight || 0) + "px"); r.setProperty("--cth", ($("#cats").offsetHeight || 0) + "px");
+}
+function render() { renderPage(); renderWish(); updateCars(); setBars(); }
 
 /* ===================== Preise, Optionen, Wunschliste ===================== */
 function unitPrice(it, k, o) {
   let p = it.p[k] || 0;
   if (o) {
-    const pizza = it.c === "pizza";
-    (o.add || []).forEach(n => { const e = EXTRAS.find(x => x.names[0] === n); if (e) p += (pizza ? e.p[k] : (e.p[3] != null ? e.p[3] : e.p[1])) || 0; });
+    (o.add || []).forEach(n => { const e = extList(it).find(x => x.names[0] === n); if (e) p += extPrice(it, e, k) || 0; });
     if (o.kaese && KAESE) p += KAESE.p[k] || 0;
     let free = 0;
-    SAUCES.forEach(s => { if (!(o.sauce || []).includes(s.names[0])) return; if (s.free && free < FREE) free++; else p += s.price; });
+    SAUCES.forEach(s => { if (!(o.sauce || []).includes(s.names[0])) return; if (s.free && it.c === "pizza" && free < FREE) free++; else p += s.price; });
   }
   return p;
 }
@@ -454,26 +491,25 @@ const openModal = id => { $(id).hidden = false; document.body.classList.add("mod
 const closeModals = () => { $$(".modal").forEach(m => m.hidden = true); document.body.classList.remove("modal-open"); };
 
 function openOptions(m, k) {
-  const it = MENU[m], pizza = it.c === "pizza", ext = HAS_OPT(it.c) && EXTRAS.length > 0, size = it.sized ? sizeLabels(it)[k] : "";
-  const exP = e => pizza ? e.p[k] : (e.p[3] != null ? e.p[3] : e.p[1]);
+  const it = MENU[m], pizza = it.c === "pizza", list = extList(it), ext = hasOpts(it), size = it.sized ? sizeLabels(it)[k] : "";
   $("#opt-body").innerHTML = `<h3>${esc(it.names[L()])} <small>${esc(size)}</small></h3>` +
     it.choices.map((g, gi) => `<fieldset><legend>${tr("opt_choose")} *</legend><div class="opts">${g.map((x, xi) => `<label><input type="radio" name="ch${gi}" value="${xi}"> ${esc(ingName(x))}</label>`).join("")}</div></fieldset>`).join("") +
-    (ext && it.ing.length ? `<fieldset><legend>${tr("opt_remove")}</legend><div class="opts">${it.ing.map((x, i) => `<label><input type="checkbox" data-r="${i}" checked> ${esc(ingName(x))}</label>`).join("")}</div></fieldset>` : "") +
-    (ext ? `<fieldset><legend>${tr("opt_extras")}</legend><div class="opts">${EXTRAS.filter(e => exP(e) != null).map(e => `<label><input type="checkbox" data-e="${EXTRAS.indexOf(e)}"> ${esc(ingName(e.names[0]))} <em>+${eur(exP(e))}</em></label>`).join("")}</div></fieldset>` : "") +
+    (ext && it.ing.some(x => x !== "Kartoffeln") ? `<fieldset><legend>${tr("opt_remove")}</legend><div class="opts">${it.ing.map((x, i) => x === "Kartoffeln" ? "" : `<label><input type="checkbox" data-r="${i}" checked> ${esc(ingName(x))}</label>`).join("")}</div></fieldset>` : "") +
+    (ext ? `<fieldset><legend>${tr("opt_extras")}</legend><div class="opts">${list.filter(e => extPrice(it, e, k) != null).map(e => `<label><input type="checkbox" data-e="${list.indexOf(e)}"> ${esc(ingName(e.names[0]))} <em>+${eur(extPrice(it, e, k))}</em></label>`).join("")}</div></fieldset>` : "") +
     (pizza && ext && KAESE && KAESE.p[k] != null ? `<fieldset><label class="big"><input type="checkbox" data-k> ${esc(KAESE.names[L()])} <em>+${eur(KAESE.p[k])}</em></label></fieldset>` : "") +
-    (pizza && ext && SAUCES.length ? `<fieldset><legend>${tr("opt_sauces")}</legend><div class="opts">${SAUCES.map((s, i) => `<label><input type="checkbox" data-s="${i}"> ${esc(s.names[L()])} <em data-sp="${i}"></em></label>`).join("")}</div></fieldset>` : "") +
+    ((pizza || it.c === "pommes") && ext && SAUCES.length ? `<fieldset><legend>${tr("opt_sauces")}</legend><div class="opts">${SAUCES.map((s, i) => `<label><input type="checkbox" data-s="${i}"> ${esc(s.names[L()])} <em data-sp="${i}"></em></label>`).join("")}</div></fieldset>` : "") +
     `<div class="opt-foot"><span>${tr("total")}: <strong id="opt-sum"></strong></span><button id="opt-add" class="btn solid dl">${tr("opt_add")}</button></div>`;
   const read = () => ({
     choice:it.choices.map((g, gi) => { const c = $(`#opt-body [name="ch${gi}"]:checked`); return c ? g[+c.value] : null; }),
     rem:$$("#opt-body [data-r]").filter(c => !c.checked).map(c => it.ing[+c.dataset.r]),
-    add:$$("#opt-body [data-e]").filter(c => c.checked).map(c => EXTRAS[+c.dataset.e].names[0]),
+    add:$$("#opt-body [data-e]").filter(c => c.checked).map(c => list[+c.dataset.e].names[0]),
     kaese:!!($("#opt-body [data-k]") || {}).checked,
     sauce:$$("#opt-body [data-s]").filter(c => c.checked).map(c => SAUCES[+c.dataset.s].names[0])
   });
   const calc = () => {
     const o = read(); $("#opt-sum").textContent = eur(unitPrice(it, k, o)); $("#opt-add").disabled = o.choice.some(x => !x);
     let free = 0;
-    SAUCES.forEach((s, i) => { const box = $(`#opt-body [data-s="${i}"]`); if (!box) return; const isFree = s.free && free < FREE; if (box.checked && isFree) free++; $(`[data-sp="${i}"]`).textContent = isFree ? tr("opt_free") : "+" + eur(s.price); });
+    SAUCES.forEach((s, i) => { const box = $(`#opt-body [data-s="${i}"]`); if (!box) return; const isFree = s.free && pizza && free < FREE; if (box.checked && isFree) free++; $(`[data-sp="${i}"]`).textContent = isFree ? tr("opt_free") : "+" + eur(s.price); });
   };
   $("#opt-body").onchange = calc; calc();
   $("#opt-add").onclick = () => { const o = read(); if (o.choice.some(x => !x)) return; addWish(m, k, o); closeModals(); };
@@ -529,30 +565,37 @@ function initCarousels() {
   });
   window.addEventListener("resize", updateCars);
 }
-const SPY = ["start","speisekarte","standorte","jobs","kontakt"];
+function injectSchema() {
+  const l = LOCATIONS[0], days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], base = location.href.split("#")[0];
+  const data = {"@context":"https://schema.org", "@type":"Restaurant", name:l.name, servesCuisine:"Pizza", telephone:l.phone, email:l.mail, url:base, hasMenu:base + "#speisekarte",
+    address:{"@type":"PostalAddress", streetAddress:l.street, postalCode:(l.city.match(/^\d+/) || [""])[0], addressLocality:l.city.replace(/^\d+\s*/, ""), addressCountry:"DE"},
+    openingHoursSpecification:Object.entries(OPENING).filter(([d, h]) => h).map(([d, h]) => ({"@type":"OpeningHoursSpecification", dayOfWeek:days[d], opens:h[0], closes:h[1]}))};
+  const el = document.createElement("script"); el.type = "application/ld+json"; el.textContent = JSON.stringify(data); document.head.append(el);
+}
+const SPY = ["start","speisekarte","bewertungen","galerie","standorte","jobs","kontakt"];
 let spyBusy = false;
 function spy() {
   let cur = "start";
   SPY.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) cur = id; });
   if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = "kontakt";
-  $$(".top nav a").forEach(a => { const on = a.getAttribute("href") === "#" + cur; a.toggleAttribute("aria-current", on); if (on) { const nav = a.parentElement; nav.scrollLeft = a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2; } });
+  $$(".top nav a").forEach(a => { const on = a.getAttribute("href") === "#" + (cur === "galerie" ? "bewertungen" : cur); a.toggleAttribute("aria-current", on); if (on) { const nav = a.parentElement; nav.scrollLeft = a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2; } });
 }
 window.addEventListener("scroll", () => { if (spyBusy) return; spyBusy = true; requestAnimationFrame(() => { spyBusy = false; spy(); }); }, {passive:true});
-window.addEventListener("resize", () => { updateCars(); spy(); });
+window.addEventListener("resize", () => { updateCars(); spy(); setBars(); });
 // Einblicke: einblick-1.jpg, einblick-2.jpg, ... (so viele wie hochgeladen, ohne Lücken)
 const exists = u => fetch(u, {method:"HEAD"}).then(r => r.ok).catch(() => false);
 async function loadSlides() {
   let list = [];
   for (const base of ["einblick", "restaurant"]) { for (let n = 1; n <= 80; n++) { const u = `images/photos/${base}-${n}.jpg`; if (!(await exists(u))) break; list.push(u); } if (list.length) break; }
   if (!list.length) list = ["images/restaurant-1.svg", "images/restaurant-2.svg", "images/restaurant-3.svg"];
-  $("#slides").innerHTML = list.map((u, i) => `<img src="${u}" alt="Pan Pizza Hause ${i + 1}" loading="${i ? "lazy" : "eager"}">`).join("");
+  $("#slides").innerHTML = list.map((u, i) => `<img src="${u}" alt="Pan Pizza Haus ${i + 1}" loading="${i ? "lazy" : "eager"}">`).join("");
   updateCars();
 }
 
 /* ===================== Ereignisse ===================== */
 document.addEventListener("click", e => {
   const add = e.target.closest("[data-w]");
-  if (add) { const [m, k] = add.dataset.w.split(":").map(Number); if ((HAS_OPT(MENU[m].c) && EXTRAS.length) || MENU[m].choices.length) openOptions(m, k); else addWish(m, k, null); return; }
+  if (add) { const [m, k] = add.dataset.w.split(":").map(Number); if (hasOpts(MENU[m]) || MENU[m].choices.length) openOptions(m, k); else addWish(m, k, null); return; }
   const q = e.target.closest("[data-q]");
   if (q) { const [i, d] = q.dataset.q.split("|"), w = wish[+i]; if (!w) return; w.q = d === "x" ? 0 : Math.max(0, w.q + Number(d)); wish = wish.filter(x => x.q > 0); saveWish(); renderWish(); return; }
   if (e.target.closest("[data-close]") || e.target.classList.contains("modal")) closeModals();
@@ -639,6 +682,7 @@ function renderQuoteAt(n) {
   void el.offsetWidth;
   el.className = `qt fx-${fx}` + (fx === "rise" || fx === "press" ? " anim" : "");
   if (fx === "type" && !REDUCED) { const us = el.querySelectorAll(".u"); us.forEach(u => { u.style.opacity = 0; }); us.forEach((u, i) => setTimeout(() => { if (qTok[n] === token) u.style.opacity = 1; }, 120 + i * 38)); }
+  el.querySelectorAll("em.fix").forEach(f => { if (REDUCED) f.classList.add("go"); else setTimeout(() => { if (qTok[n] === token) f.classList.add("go"); }, 1900); });
   runErase(el, n, token);
   const d = fxDuration(el, fx), emo = el.querySelector(".emo");
   if (emo && el.querySelector("em.fix, em.erase")) emo.style.animationDelay = `${d - 300}ms, ${d + 200}ms`;
@@ -679,5 +723,5 @@ const NAMES = {de:"Deutsch", en:"English", tr:"Türkçe", ar:"العربية", r
 const sel = $("#lang-select");
 ["de","en","tr","ar","ru","pl","uk"].forEach(c => sel.add(new Option(NAMES[c], c)));
 sel.onchange = () => { lang = sel.value; sset("lang", lang); render(); renderQuote(); typeTagline(); };
-render(); renderQuote(); typeTagline(); showCookie(); initCarousels(); spy(); watchQuotes(); loadSlides();
+render(); renderQuote(); typeTagline(); showCookie(); initCarousels(); spy(); watchQuotes(); loadSlides(); injectSchema(); setBars();
 loadMenu().then(render);

@@ -1,4 +1,4 @@
-# Pan Pizza Hause – Website
+# Pan Pizza Haus – Website
 
 Statische Seite (HTML/CSS/JS). Sprachen: DE, EN, TR, AR, RU, PL, UA (wird automatisch erkannt).
 
@@ -11,7 +11,8 @@ Statische Seite (HTML/CSS/JS). Sprachen: DE, EN, TR, AR, RU, PL, UA (wird automa
 - **Zutaten:** durch Komma getrennt, deutsch (bekannte Zutaten werden automatisch übersetzt)
 - **Allergene:** Buchstaben a–o, Zusatzstoffe als Zahlen, z. B. `a,g,7,8`
 - **Menge:** z. B. `0,33 l`
-- Sonderzeilen: Kategorie `extra` (Zutat hinzufügen, Preise je Größe), `kaeserand` (Aufpreis), `sosse` (Tag `gratis` = zählt zu den Gratis-Soßen), `einstellung` (Anzahl Gratis-Soßen pro Pizza)
+- Kategorien: vorspeisen, pizza, pasta, salate, pommes, desserts, getraenke (Soßen & Dressings entstehen automatisch aus den `sosse`-Zeilen)
+- Sonderzeilen: Kategorie `extra` (Zutat hinzufügen, Preise je Größe), `kaeserand` (Aufpreis), `sosse` (Tag `gratis` = zählt zu den Gratis-Soßen), `extra_pommes` (Toppings für Pommes, Preis je Größe), `einstellung` (Anzahl Gratis-Soßen pro Pizza). Bei `sosse` mit Tag `dressing` erscheint der Eintrag nur in der Karte, nicht bei den Pizza-Optionen
 - Speichern, hochladen, fertig: Preise erscheinen automatisch auf der Seite.
 
 ## Fotos

@@ -253,7 +253,7 @@ footer a{margin-inline-start:4px}
 .polaroid img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
 .q3.frame .qt{margin:0}
 .q4{position:relative;overflow:hidden}
-.q4::before{content:"PAN PIZZA HAUSE ★ PAN PIZZA HAUSE ★ PAN PIZZA HAUSE ★ PAN PIZZA HAUSE ★ ";position:absolute;top:50%;left:0;white-space:nowrap;font:800 clamp(5rem,16vw,11rem)/1 "Oswald",sans-serif;color:transparent;-webkit-text-stroke:2px #ffffff30;transform:translateY(-50%);animation:marq 30s linear infinite}
+.q4::before{content:"PAN PIZZA HAUS ★ PAN PIZZA HAUS ★ PAN PIZZA HAUS ★ PAN PIZZA HAUS ★ ";position:absolute;top:50%;left:0;white-space:nowrap;font:800 clamp(5rem,16vw,11rem)/1 "Oswald",sans-serif;color:transparent;-webkit-text-stroke:2px #ffffff30;transform:translateY(-50%);animation:marq 30s linear infinite}
 @keyframes marq{to{transform:translate(-50%,-50%)}}
 .q4 .qt{position:relative;z-index:1}
 .q5 .qt{position:relative;display:inline-block;padding:28px 42px;color:#ffe3e8;text-shadow:0 0 10px #ff5a73}
@@ -356,3 +356,48 @@ html[dir="rtl"] .qt em.fix b{clip-path:inset(-10% 0 -10% 100%);animation-name:wr
 @media(max-width:760px){.hero-media{-webkit-mask-image:none;mask-image:none}}
 
 .fx-type .u{opacity:1;animation:none;display:inline}
+
+/* ---- v11: sticky menu filters, location buttons ---- */
+html{scroll-padding-top:calc(var(--hh,72px) + 8px)}
+.menu-right{min-width:0}
+.chips{position:sticky;top:var(--hh,72px);z-index:6;margin:0 0 14px;padding:10px 0;background:var(--bg);flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}.chips:empty{display:none}
+.chips button{white-space:nowrap;flex:0 0 auto}
+.cats{position:sticky;top:calc(var(--hh,72px) + var(--ph,56px) + 6px)}
+.loc-actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+@media(max-width:760px){
+  .menu-grid{display:block}
+  .cats{top:var(--hh,78px);z-index:7;background:var(--bg);flex-direction:row;overflow-x:auto;gap:6px;padding:8px 0;border:0;scrollbar-width:none}
+  .cats::-webkit-scrollbar{display:none}
+  .chips{top:calc(var(--hh,78px) + var(--cth,52px));padding:8px 0}
+}
+
+/* ---- v12 ---- */
+.sub{margin:-8px 0 18px;color:var(--muted);font-size:1.05rem}
+#menu-top{scroll-margin-top:calc(var(--hh,72px) + var(--ph,56px) + 6px)}
+.foot-brand{margin-inline-end:auto;display:flex;flex-direction:column;gap:2px}
+.foot-tag{color:var(--muted);font-size:.85rem}
+.top{transition:transform .25s ease}
+.top.hide{transform:translateY(-100%)}
+.chips,.cats{transition:top .25s ease}
+.qt em.fix b{display:none}
+.qt em.fix.go b{display:inline-block;animation:writeIn .9s steps(14) forwards}
+html[dir="rtl"] .qt em.fix.go b{animation-name:writeInRtl}
+@media(max-width:760px){
+  .top{padding:4px 10px;gap:2px 8px}
+  .top .logo{height:30px;width:auto}
+  .top nav{font-size:.8rem;gap:14px;padding:0 0 3px}
+  .lang-select{padding:3px 6px;font-size:.78rem}
+  .cats{padding:6px 0}
+  .cats button{padding:6px 12px;font-size:.86rem}
+  .chips{padding:5px 0 6px}
+  .chips button{padding:3px 12px;font-size:.84rem}
+  #menu-top{scroll-margin-top:calc(var(--hh,60px) + var(--cth,40px) + var(--ph,40px) + 6px)}
+}
+
+@media(min-width:761px) and (max-width:1000px){
+  .top{flex-wrap:nowrap;gap:12px}
+  .top nav{flex:1;min-width:0;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-end;gap:14px;scrollbar-width:none}
+  .top nav a{white-space:nowrap}
+  .top .logo{height:44px}
+}
