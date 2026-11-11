@@ -11,7 +11,7 @@
 <meta name="description" content="Pfannenpizza – fluffig, dick belegt, knusprig am Rand.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 124 124%22%3E%3Ccircle cx=%2262%22 cy=%2262%22 r=%2260%22 fill=%22%23c8102e%22/%3E%3Cg transform=%22translate(8 2) scale(.82)%22%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2242%22 fill=%22%231f1d1b%22 stroke=%22%23fff%22 stroke-width=%225%22/%3E%3Cline x1=%2284%22 y1=%2290%22 x2=%22114%22 y2=%22112%22 stroke=%22%23fff%22 stroke-width=%2212%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2233%22 fill=%22%23e0952f%22/%3E%3Ccircle cx=%2252%22 cy=%2258%22 r=%2226%22 fill=%22%23f7d36b%22/%3E%3Cpath d=%22M52 58 L52 33 M52 58 L74 71 M52 58 L30 71%22 stroke=%22%23e0952f%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2244%22 cy=%2246%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2262%22 cy=%2252%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2252%22 cy=%2270%22 r=%225.5%22 fill=%22%23b3202a%22/%3E%3Ccircle cx=%2236%22 cy=%2262%22 r=%223%22 fill=%22%232f8f3f%22/%3E%3Ccircle cx=%2268%22 cy=%2268%22 r=%223%22 fill=%22%232f8f3f%22/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="heat" x="-5%" y="-20%" width="110%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.08" numOctaves="2" seed="3" result="n"><animate attributeName="baseFrequency" dur="3s" values="0.012 0.08;0.017 0.12;0.012 0.08" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="7"/></filter></svg>
@@ -20,7 +20,6 @@
   <nav aria-label="Main">
     <a href="#start" data-i18n="nav_home"></a>
     <a href="#speisekarte" data-i18n="nav_menu"></a>
-    <a href="#bewertungen" data-i18n="nav_reviews"></a>
     <a href="#standorte" data-i18n="nav_locations"></a>
     <a href="#jobs" data-i18n="nav_jobs"></a>
     <a href="#kontakt" data-i18n="nav_contact"></a>
@@ -51,7 +50,9 @@
     <article class="fcard"><h3 data-i18n="f3"></h3></article>
   </section>
 
-  <section id="speisekarte" class="menu" data-page="menu">
+  <section id="speisekarte" class="qband q4" data-page="start"><p class="qt" data-quote="0"></p></section>
+
+  <section id="menu" class="menu" data-page="menu">
     <h2 data-i18n="menu_h"></h2>
     <p class="sub" data-tl="1"></p>
     <div class="menu-grid">
@@ -65,8 +66,6 @@
     </div>
     <p class="note" id="menu-notes"></p>
   </section>
-
-  <section class="qband q2" data-page="menu"><p class="qt" data-quote="1"></p></section>
 
   <section id="bewertungen" class="revs" data-page="reviews">
     <h2 data-i18n="rev_h"></h2>
@@ -83,23 +82,23 @@
     </div>
   </section>
 
-  <section class="qband q5" data-page="location"><p class="qt" data-quote="4"></p></section>
+  <section id="standorte" class="qband q5" data-page="location"><p class="qt" data-quote="4"></p></section>
 
-  <section id="standorte" class="locs" data-page="location">
+  <section id="location" class="locs" data-page="location">
     <h2 data-i18n="loc_h"></h2>
     <div id="loc-list" class="loc-list"></div>
   </section>
 
-  <section class="qband q1" data-page="jobs"><p class="qt" data-quote="3"></p></section>
+  <section id="jobs" class="qband q1" data-page="jobs"><p class="qt" data-quote="3"></p></section>
 
-  <section id="jobs" class="plain" data-page="jobs">
+  <section id="jobs-text" class="plain" data-page="jobs">
     <h2 data-i18n="jobs_h"></h2>
     <p data-i18n="jobs_p"></p>
   </section>
 
-  <section class="qband q4" data-page="start"><p class="qt" data-quote="0"></p></section>
+  <section id="kontakt" class="qband q2" data-page="menu"><p class="qt" data-quote="1"></p></section>
 
-  <section id="kontakt" class="plain" data-page="contact">
+  <section id="contact" class="plain" data-page="contact">
     <h2 data-i18n="contact_h"></h2>
     <p data-i18n="contact_p"></p>
     <p><a href="mailto:info@example.com">info@example.com</a></p>
@@ -122,6 +121,6 @@
   <p class="wish-hint" data-i18n="wish_hint"></p>
   <button id="wish-clear" class="btn-small" data-i18n="clear"></button>
 </aside>
-<script src="app.js?v=12"></script>
+<script src="app.js?v=13"></script>
 </body>
 </html>

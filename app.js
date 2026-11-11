@@ -296,6 +296,14 @@ const QFX = [
 
 // Emoji hinter dem hervorgehobenen Wort (je Platz 4 Zitate)
 const QEMO = [["","","🧀","",""],["🔥","","","",""],["","","","",""],["","","","",""],["","","","❤️",""]];
+QSETS[2].push(
+  ["Gutes Licht, gutes Essen, [[gute Erinnerungen]].","Güzel ışık, güzel yemek, [[güzel anılar]].","Good light, good food, [[good memories]].","ضوء جميل، طعام لذيذ، [[ذكريات جميلة]].","Тёплый свет, вкусная еда, [[хорошие воспоминания]].","Dobre światło, dobre jedzenie, [[dobre wspomnienia]].","Тепле світло, смачна їжа, [[гарні спогади]]."],
+  ["Jede Ecke hat eine [[Geschichte zum Probieren]].","Her köşenin [[tadılacak bir hikâyesi]] var.","Every corner has a [[story to taste]].","لكل ركن [[حكاية تُتذوّق]].","В каждом уголке есть [[история со вкусом]].","Każdy kąt ma [[historię do skosztowania]].","У кожному куточку є [[історія зі смаком]]."],
+  ["Setz dich, [[die Pfanne ist heiß]].","Otur, [[tava sıcak]].","Pull up a chair, [[the pan is hot]].","اجلس، [[المقلاة ساخنة]].","Садись, [[сковорода уже горячая]].","Siadaj, [[patelnia już gorąca]].","Сідай, [[пательня вже гаряча]]."],
+  ["Hier werden Freunde zu [[Stammgästen]].","Arkadaşların [[müdavim]] olduğu yer.","Where friends become [[regulars]].","حيث يصبح الأصدقاء [[زبائن دائمين]].","Здесь друзья становятся [[постоянными гостями]].","Tu przyjaciele zostają [[stałymi gośćmi]].","Тут друзі стають [[постійними гостями]]."]
+);
+QFX[2].push("blur","bounce","type","rise");
+QEMO[2].push("","","","");
 
 // Slogans mit Schreibmaschinen-Effekt über den Buttons
 const TAGLINES = [
@@ -327,9 +335,10 @@ const ING_DE = {}; Object.values(ING).forEach(a => ING_DE[a[0]] = a); Object.ass
 const ingName = x => (ING_DE[x] || [])[L()] || x;
 const slug = s => s.toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const FALLBACK = {vorspeisen:"garlic-bread", pizza:"pizza-pepperoni", pasta:"penne", salate:"salad", pommes:"fries", desserts:"brownie", getraenke:"cola", sossen:"sauce"};
-const HAS_OPT = c => ["pizza","pasta","salate","pommes"].includes(c);
-const extList = it => it.c === "pommes" ? EXTRAS_POM : EXTRAS, hasOpts = it => HAS_OPT(it.c) && extList(it).length > 0;
-const extPrice = (it, e, k) => (it.c === "pizza" || it.c === "pommes") ? e.p[k] : (e.p[3] != null ? e.p[3] : e.p[1]);
+const HAS_OPT = c => ["pizza","pasta","salate"].includes(c);
+const isFries = it => it.t.includes("pommes");
+const extList = it => isFries(it) ? EXTRAS_POM : EXTRAS, hasOpts = it => (HAS_OPT(it.c) || isFries(it)) && extList(it).length > 0;
+const extPrice = (it, e, k) => (it.c === "pizza" || isFries(it)) ? e.p[k] : (e.p[3] != null ? e.p[3] : e.p[1]);
 
 /* ===================== Speisekarte aus speisekarte.csv ===================== */
 let MENU = [], EXTRAS = [], EXTRAS_POM = [], SAUCES = [], KAESE = null, FREE = 2, menuError = false;
@@ -395,7 +404,7 @@ const sizeLabels = it => it.sized ? (it.vol.includes("|") ? it.vol.split("|").ma
 window.imgNext = img => { const c = (img.dataset.c || "").split("|").filter(Boolean), k = +(img.dataset.k || 0); if (k < c.length) { img.dataset.k = k + 1; img.src = "images/photos/" + c[k] + ".jpg"; } else { img.onerror = null; img.src = img.dataset.fb; } };
 function cardHTML(i, mi) {
   const name = i.names[L()], cands = [...new Set([i.g, slug(i.names[0]), slug(i.names[2])].filter(Boolean))];
-  const fb = i.t.includes("alcohol") ? (/wein|prosecco|spritz|aperol|hugo|gin|limoncello|grappa/i.test(i.names[0]) ? "wine" : "beer") : (FALLBACK[i.c] || "cola");
+  const fb = i.t.includes("alcohol") ? (/wein|prosecco|spritz|aperol|hugo|gin|limoncello|grappa/i.test(i.names[0]) ? "wine" : "beer") : (isFries(i) ? "fries" : (FALLBACK[i.c] || "cola"));
   const tags = i.t.filter(k => TAGS[k]).map(k => `<span class="tag">${TAGS[k][L()]}</span>`).join("");
   const alg = i.al.length ? i.al.map(c => `<span class="badge" title="${ALG[c] ? ALG[c][L()] : c}">${c.toUpperCase()}</span>`).join("") : tr("none");
   const add = i.ad.map(n => `<span class="badge add" title="${ADD[n] || ""}">${n}</span>`).join("");
@@ -497,7 +506,7 @@ function openOptions(m, k) {
     (ext && it.ing.some(x => x !== "Kartoffeln") ? `<fieldset><legend>${tr("opt_remove")}</legend><div class="opts">${it.ing.map((x, i) => x === "Kartoffeln" ? "" : `<label><input type="checkbox" data-r="${i}" checked> ${esc(ingName(x))}</label>`).join("")}</div></fieldset>` : "") +
     (ext ? `<fieldset><legend>${tr("opt_extras")}</legend><div class="opts">${list.filter(e => extPrice(it, e, k) != null).map(e => `<label><input type="checkbox" data-e="${list.indexOf(e)}"> ${esc(ingName(e.names[0]))} <em>+${eur(extPrice(it, e, k))}</em></label>`).join("")}</div></fieldset>` : "") +
     (pizza && ext && KAESE && KAESE.p[k] != null ? `<fieldset><label class="big"><input type="checkbox" data-k> ${esc(KAESE.names[L()])} <em>+${eur(KAESE.p[k])}</em></label></fieldset>` : "") +
-    ((pizza || it.c === "pommes") && ext && SAUCES.length ? `<fieldset><legend>${tr("opt_sauces")}</legend><div class="opts">${SAUCES.map((s, i) => `<label><input type="checkbox" data-s="${i}"> ${esc(s.names[L()])} <em data-sp="${i}"></em></label>`).join("")}</div></fieldset>` : "") +
+    ((pizza || isFries(it)) && ext && SAUCES.length ? `<fieldset><legend>${tr("opt_sauces")}</legend><div class="opts">${SAUCES.map((s, i) => `<label><input type="checkbox" data-s="${i}"> ${esc(s.names[L()])} <em data-sp="${i}"></em></label>`).join("")}</div></fieldset>` : "") +
     `<div class="opt-foot"><span>${tr("total")}: <strong id="opt-sum"></strong></span><button id="opt-add" class="btn solid dl">${tr("opt_add")}</button></div>`;
   const read = () => ({
     choice:it.choices.map((g, gi) => { const c = $(`#opt-body [name="ch${gi}"]:checked`); return c ? g[+c.value] : null; }),
@@ -572,13 +581,13 @@ function injectSchema() {
     openingHoursSpecification:Object.entries(OPENING).filter(([d, h]) => h).map(([d, h]) => ({"@type":"OpeningHoursSpecification", dayOfWeek:days[d], opens:h[0], closes:h[1]}))};
   const el = document.createElement("script"); el.type = "application/ld+json"; el.textContent = JSON.stringify(data); document.head.append(el);
 }
-const SPY = ["start","speisekarte","bewertungen","galerie","standorte","jobs","kontakt"];
+const SPY = ["start","speisekarte","standorte","jobs","kontakt"];
 let spyBusy = false;
 function spy() {
   let cur = "start";
   SPY.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) cur = id; });
   if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = "kontakt";
-  $$(".top nav a").forEach(a => { const on = a.getAttribute("href") === "#" + (cur === "galerie" ? "bewertungen" : cur); a.toggleAttribute("aria-current", on); if (on) { const nav = a.parentElement; nav.scrollLeft = a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2; } });
+  $$(".top nav a").forEach(a => { const on = a.getAttribute("href") === "#" + cur; a.toggleAttribute("aria-current", on); if (on) { const nav = a.parentElement; nav.scrollLeft = a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2; } });
 }
 window.addEventListener("scroll", () => { if (spyBusy) return; spyBusy = true; requestAnimationFrame(() => { spyBusy = false; spy(); }); }, {passive:true});
 window.addEventListener("resize", () => { updateCars(); spy(); setBars(); });
@@ -590,6 +599,8 @@ async function loadSlides() {
   if (!list.length) list = ["images/restaurant-1.svg", "images/restaurant-2.svg", "images/restaurant-3.svg"];
   $("#slides").innerHTML = list.map((u, i) => `<img src="${u}" alt="Pan Pizza Haus ${i + 1}" loading="${i ? "lazy" : "eager"}">`).join("");
   updateCars();
+  const sl = $("#slides"); let lastSlide = 0, st = 0;
+  sl.addEventListener("scroll", () => { clearTimeout(st); st = setTimeout(() => { const i = Math.round(Math.abs(sl.scrollLeft) / (sl.clientWidth + 12)); if (i !== lastSlide) { lastSlide = i; if (qVis[2]) scheduleQuote(2, true); } }, 140); }, {passive:true});
 }
 
 /* ===================== Ereignisse ===================== */
@@ -693,14 +704,17 @@ function scheduleQuote(n, advance) {
   clearTimeout(qTimer[n]);
   if (advance) qIdx[n] = (qIdx[n] + 1) % QSETS[n].length;
   const dur = renderQuoteAt(n);
-  const tick = () => { qTimer[n] = setTimeout(() => qVis[n] ? scheduleQuote(n, true) : tick(), 700); };
-  qTimer[n] = setTimeout(() => qVis[n] ? scheduleQuote(n, true) : tick(), dur + 2200);
+  // the quote beside the photos changes together with the photo (own timer only if there is nothing to scroll)
+  const may = () => n !== 2 || !!document.querySelector(".slider.noscroll");
+  const tick = () => { qTimer[n] = setTimeout(() => qVis[n] && may() ? scheduleQuote(n, true) : tick(), 700); };
+  qTimer[n] = setTimeout(() => qVis[n] && may() ? scheduleQuote(n, true) : tick(), dur + 2200);
 }
 function renderQuote() { QSETS.forEach((_, n) => { if (qVis[n] && !REDUCED) scheduleQuote(n, false); else renderQuoteAt(n); }); }
 function watchQuotes() {
   if (REDUCED || !window.IntersectionObserver) return;
-  const io = new IntersectionObserver(es => es.forEach(e => { const n = +e.target.dataset.quote; if (e.isIntersecting && !qVis[n]) { qVis[n] = true; scheduleQuote(n, false); } else if (!e.isIntersecting) qVis[n] = false; }), {threshold:0.4});
-  $$("[data-quote]").forEach(el => io.observe(el));
+  // watch the whole band (not the quote itself: its own clip-path animation made it look "invisible" to the browser)
+  const io = new IntersectionObserver(es => es.forEach(e => { const n = +e.target.dataset.q; if (e.isIntersecting && !qVis[n]) { qVis[n] = true; scheduleQuote(n, false); } else if (!e.isIntersecting) qVis[n] = false; }), {threshold:0, rootMargin:"-8% 0px -8% 0px"});
+  $$("[data-quote]").forEach(el => { const box = el.closest("section") || el.parentElement; box.dataset.q = el.dataset.quote; io.observe(box); });
 }
 
 // ----- Slogan: tippt sich selbst, bleibt kurz stehen, beginnt von vorn -----
